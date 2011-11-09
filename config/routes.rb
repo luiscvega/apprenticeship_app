@@ -1,4 +1,18 @@
 ApprenticeshipAppV2::Application.routes.draw do
+  
+  root :to => "sessions#new"
+  
+  get "sessions/new", :as => :signin
+  post "sessions/create"
+  delete "sessions/destroy", :as => :signout
+  
+  
+  
+  resources :users
+  resources :conversations
+  resources :apprenticeships
+  
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

@@ -13,7 +13,26 @@
 </head>
 <body>
 
-<%= yield %>
+<div id="container">
+
+  <h1>Apprenticeship Application v2</h1>
+
+  <div>
+    <% if logged_in? %>
+      <%= current_user.first_name %> | 
+      <%= link_to "Sign Out", signout_url, :method => :delete %>
+    <% else %>
+      <%= link_to "Sign In", signin_url %>
+    <% end %>
+  </div>
+
+  <% flash.each do |key, value| %>
+    <div class="flash <%= key %>"><%= value %></div>
+  <% end %>
+  
+  <%= yield %>
+  
+</div>
 
 </body>
 </html>

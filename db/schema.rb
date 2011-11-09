@@ -11,7 +11,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111109224225) do
+ActiveRecord::Schema.define(:version => 20111109231612) do
+
+  create_table "apprenticeships", :force => true do |t|
+    t.integer  "student_id"
+    t.integer  "mentor_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "conversations", :force => true do |t|
     t.integer  "relationship_id"
@@ -21,15 +28,9 @@ ActiveRecord::Schema.define(:version => 20111109224225) do
     t.datetime "updated_at"
   end
 
-  create_table "relationships", :force => true do |t|
-    t.integer  "student_id"
-    t.integer  "mentor_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "users", :force => true do |t|
-    t.string   "name"
+    t.string   "first_name"
+    t.string   "last_name"
     t.string   "email"
     t.string   "password_digest"
     t.text     "description"

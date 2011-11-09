@@ -5,3 +5,14 @@
  *= require_self
  *= require_tree . 
 */
+
+/*body {
+	background-color: #0973BA;
+}*/
+
+
+#container {
+	background-color: white;
+	width: 960px;
+	margin: 100px auto;
+}
