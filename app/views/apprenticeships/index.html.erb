@@ -1,1 +1,10 @@
 <h1>Your Apprenticeships</h1>
+
+<% @apprenticeships.each do |apprenticeship| %>
+  <% student = apprenticeship.student ; mentor = apprenticeship.mentor %>
+  <p>
+    Apprenticeship #<%= apprenticeship.id %>: 
+    Student is <%= student.first_name %> <%= student.last_name %>.
+    Mentor is <%= mentor.first_name %> <%= mentor.last_name %>.
+  </p>
+<% end %>

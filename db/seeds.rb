@@ -6,5 +6,40 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-User.create(:first_name => "Luis", :last_name => "Vega", :email => "luis@luis.com", :password => "luis", :password_confirmation => "luis", :description => "I'm Luis!")
-User.create(:first_name => "Miguel", :last_name => "Lee", :email => "fred@fred.com", :password => "miguel", :password_confirmation => "fred", :description => "I'm Fred!")
+apprenticeships = {
+  "Luis Vega"       => "Fred Lee",
+  "Arvin Dang"      => "Dave Hoover",
+  "Tom Brown"       => "Dave Pick",
+  "Alex Bartling"   => "Aaron Kalin",
+  "Charles Jackson" => "Ray Hightower",
+  "Matt Duff"       => "Jeff Cohen", 
+  "Dave Fonvielle"  => "Ryan Briones", 
+  "Vince Cabansag"  => "Corey Haines",
+  "Mike Verdi"      => "Paul Pagel"
+}
+
+students = apprenticeships.keys
+mentors = apprenticeships.values
+everyone = students + mentors # This line was just way too funny.
+
+create_users = Proc.new do |name|
+            first = name.split.first.downcase
+            last = name.split.last.downcase
+            User.create(:first_name => first.capitalize,
+                        :last_name => last.capitalize,
+                        :email => first + "@" + first + ".com",
+                        :password => first,
+                        :password_confirmation => first,
+                        :description => "I'm #{first.capitalize} #{last.capitalize}!")
+          end
+
+everyone.each { |name| create_users.call name }
+
+i = 0
+while (i < apprenticeships.count)
+  apprenticeship = Apprenticeship.new
+  apprenticeship.student = User.find_by_first_name(students[i].split.first) && User.find_by_last_name(students[i].split.last)
+  apprenticeship.mentor = User.find_by_first_name(mentors[i].split.first) && User.find_by_last_name(mentors[i].split.last)
+  apprenticeship.save
+  i+=1
+end
