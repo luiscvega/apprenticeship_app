@@ -9,7 +9,7 @@ ApprenticeshipAppV2::Application.routes.draw do
   
   
   resources :users
-  resources :conversations
+  resources :messages
   resources :apprenticeships
   
   
