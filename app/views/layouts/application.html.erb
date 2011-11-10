@@ -20,6 +20,7 @@
   <div>
     <% if logged_in? %>
       <%= current_user.first_name %> | 
+      <%= link_to "Apprenticeships", apprenticeships_url %> | 
       <%= link_to "Sign Out", signout_url, :method => :delete %>
     <% else %>
       <%= link_to "Sign In", signin_url %>

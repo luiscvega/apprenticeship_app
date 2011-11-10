@@ -1,5 +1,5 @@
 class ApprenticeshipsController < ApplicationController
   def index
-    @apprenticeships = Apprenticeship.all
+    @apprenticeships = current_user.apprenticeships
   end
 end
