@@ -1,12 +1,15 @@
 require 'spec_helper'
 
 describe User do
-
+  
+  before(:each) do
+    @student = User.create(:first_name => "Luis", :last_name => "Vega", :email => "luis@luis.com", :password => "luis", :password_confirmation => "luis", :description => "I'm Luis!")
+    @mentor = User.create(:first_name => "Fred", :last_name => "Lee", :email => "fred@fred.com", :password => "fred", :password_confirmation => "fred", :description => "I'm Fred!")
+  end
+  
   describe "apprenticeship associations" do
 
     before(:each) do
-      @student = User.create(:first_name => "Luis", :last_name => "Vega", :email => "luis@luis.com", :password => "luis", :password_confirmation => "luis", :description => "I'm Luis!")
-      @mentor = User.create(:first_name => "Fred", :last_name => "Lee", :email => "fred@fred.com", :password => "fred", :password_confirmation => "fred", :description => "I'm Fred!")
       @student2 = User.create(:first_name => "Abe", :last_name => "Lincoln", :email => "abe@abe.com", :password => "abe", :password_confirmation => "abe", :description => "I'm Abe!")
       @mentor2 = User.create(:first_name => "Barack", :last_name => "Obama", :email => "barack@barack.com", :password => "barack", :password_confirmation => "barack", :description => "I'm Abe!")
       @apprenticeship = Apprenticeship.create(:mentor_id => @mentor.id, :student_id => @student.id)
@@ -28,6 +31,17 @@ describe User do
     
     it "should have an apprenticeships attribute listing all of the user's apprenticeships" do
       @student.apprenticeships.should include(@apprenticeship)
+    end
+  end
+
+  describe "message associations" do
+    before(:each) do
+      @message = {:text => "I'm a message!"}
+    end
+    
+    it "should have a messages attribute to create a message with the correct user" do
+      @student_message = @student.messages.create(@message)
+      @student.messages.should include(@student_message)
     end
   end
 end

@@ -1,1 +1,5 @@
-<%= conversation.message %><br />
+<tr>
+  <td><%= message.user.first_name %></td>
+  <td><%= message.text %></td>
+  <td><%= time_ago_in_words(message.created_at)%></td>
+</tr>

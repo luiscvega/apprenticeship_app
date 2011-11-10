@@ -1,8 +1,8 @@
 <h1>Messages</h1>
 
-<%= render @messages %>
+<table><%= render @messages %></table>
 
-<%= form_for @message do |f|%>
+<%= form_for @message, :url => apprenticeship_messages_url do |f|%>
   <div class="field">
     <%= f.label :text %><br />
     <%= f.text_area :text, :rows => 3 %>

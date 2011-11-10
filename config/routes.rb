@@ -9,8 +9,10 @@ ApprenticeshipAppV2::Application.routes.draw do
   
   
   resources :users
-  resources :messages
-  resources :apprenticeships
+
+  resources :apprenticeships do
+    resources :messages
+  end
   
   
   # The priority is based upon order of creation:

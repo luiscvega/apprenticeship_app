@@ -1,5 +1,6 @@
 class Apprenticeship < ActiveRecord::Base
-  has_many :conversations
+  
+  has_many :messages
   
   belongs_to :mentor,
              :class_name => "User",
