@@ -44,4 +44,22 @@ describe User do
       @student.messages.should include(@student_message)
     end
   end
+  
+  describe "resource associations" do
+    before(:each) do
+      @resource = {:link => "http://google.com", :title => "Google", :description => "For searching."}
+    end
+    
+    it "should have a resources attribute to create a resource with the correct user" do
+      @student_resource = @student.resources.create(@resource)
+      @student.resources.should include(@student_resource)
+    end
+  end
+  
+  describe "specific methods" do
+    it "should have a full_name attribute displaying the user's full name" do
+      @student.should respond_to(:full_name)
+      @student.full_name.should == "Luis Vega"
+    end
+  end
 end

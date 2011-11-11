@@ -6,12 +6,11 @@ ApprenticeshipAppV2::Application.routes.draw do
   post "sessions/create"
   delete "sessions/destroy", :as => :signout
   
-  
-  
   resources :users
-
+  
   resources :apprenticeships do
     resources :messages
+    resources :resources
   end
   
   

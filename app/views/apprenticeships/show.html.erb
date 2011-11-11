@@ -1,0 +1,4 @@
+<h1>
+  Your Apprenticeship with your 
+  <%= @apprenticeship.student == current_user ? "mentor #{@mentor.full_name}." : "student #{@student.full_name}."%>
+</h1>

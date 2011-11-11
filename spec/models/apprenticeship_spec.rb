@@ -32,4 +32,16 @@ describe Apprenticeship do
     end
     
   end
+  
+  describe "resources associations" do
+    
+    before(:each) do
+      @apprenticeship = Apprenticeship.create(:mentor_id => @mentor.id, :student_id => @student.id)
+    end
+
+    # it "should have a resources attribute to create a resource with the correct apprenticeship" do
+    #   
+    # end
+    
+  end
 end

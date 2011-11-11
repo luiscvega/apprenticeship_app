@@ -4,6 +4,8 @@ class User < ActiveRecord::Base
   
   has_many :messages
   
+  has_many :resources
+  
   has_many :mentorships,
            :class_name => "Apprenticeship",
            :foreign_key => "mentor_id"
@@ -14,6 +16,10 @@ class User < ActiveRecord::Base
            
   def apprenticeships
     self.mentorships + self.studentships
+  end
+  
+  def full_name
+    self.first_name + " " + self.last_name
   end
 
 end

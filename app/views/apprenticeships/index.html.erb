@@ -6,6 +6,7 @@
     Apprenticeship #<%= apprenticeship.id %>: 
     Student is <%= student.first_name %> <%= student.last_name %>.
     Mentor is <%= mentor.first_name %> <%= mentor.last_name %>.
-    <%= link_to "See Messages", apprenticeship_messages_url(apprenticeship) %>
+    <%= link_to "See Messages", apprenticeship_messages_url(apprenticeship) %> |
+    <%= link_to "See Apprenticeship", apprenticeship_url(apprenticeship) %>
   </p>
 <% end %>
