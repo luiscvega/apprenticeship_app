@@ -2,6 +2,8 @@ class Apprenticeship < ActiveRecord::Base
   
   has_many :messages
   
+  has_many :resources
+  
   belongs_to :mentor,
              :class_name => "User",
              :foreign_key => "mentor_id"

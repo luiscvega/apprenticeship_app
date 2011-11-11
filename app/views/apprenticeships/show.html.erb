@@ -2,3 +2,6 @@
   Your Apprenticeship with your 
   <%= @apprenticeship.student == current_user ? "mentor #{@mentor.full_name}." : "student #{@student.full_name}."%>
 </h1>
+
+<p><%= link_to "Messages", apprenticeship_messages_url(current_apprenticeship) %> | 
+<%= link_to "Resources", apprenticeship_resources_url(current_apprenticeship) %></p>

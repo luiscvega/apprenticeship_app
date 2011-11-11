@@ -28,7 +28,7 @@ describe Apprenticeship do
     end
 
     it "should have a messages attribute to create a message with the correct apprenticeship" do
-      @apprenticeship.messages.create(@message)
+      @apprenticeship.messages.create(@message).should be_valid
     end
     
   end
@@ -37,11 +37,12 @@ describe Apprenticeship do
     
     before(:each) do
       @apprenticeship = Apprenticeship.create(:mentor_id => @mentor.id, :student_id => @student.id)
+      @resource = {:link => "http://google.com", :title => "Google", :description => "For searching."}
     end
 
-    # it "should have a resources attribute to create a resource with the correct apprenticeship" do
-    #   
-    # end
+    it "should have a resources attribute to create a resource with the correct apprenticeship" do
+      @apprenticeship.resources.create(@resource).should be_true
+    end
     
   end
 end

@@ -13,4 +13,9 @@ class ApprenticeshipsController < ApplicationController
       @mentor = current_user
     end
   end
+  
+  def new
+    @available_students
+    @available_mentors
+  end
 end
