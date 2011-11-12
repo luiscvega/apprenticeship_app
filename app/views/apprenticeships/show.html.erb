@@ -5,3 +5,5 @@
 
 <p><%= link_to "Messages", apprenticeship_messages_url(current_apprenticeship) %> | 
 <%= link_to "Resources", apprenticeship_resources_url(current_apprenticeship) %></p>
+
+<table><%= render @messages %></table>

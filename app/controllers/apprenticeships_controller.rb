@@ -5,6 +5,8 @@ class ApprenticeshipsController < ApplicationController
   
   def show
     @apprenticeship = current_apprenticeship
+    @messages = current_apprenticeship.messages.all
+
     if current_user == @apprenticeship.student
       @student = current_user
       @mentor = @apprenticeship.mentor
