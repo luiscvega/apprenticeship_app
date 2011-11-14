@@ -4,7 +4,7 @@
 
 <table>
   <tr>
-    <th class="table_center">Number</th>
+    <th class="table_center"></th>
     <th class="table_center">Student</th>
     <th class="table_center">Mentor</th>
     <th></th>
@@ -23,7 +23,7 @@
       </td>
       <td class="table_center">
         <% if current_user == mentor %>
-          <em><strong>You</strong></em>
+          <strong>You</strong>
         <% else %>
           <%= mentor.full_name %>
         <% end %>

@@ -1,5 +1,6 @@
 <h1>Account Settings</h1>
 
-<h3><em>Your Mentor Mode is currently turned: <strong><%= link_to current_user.mentor ? "ON" : "OFF" , toggle_url %></strong> (click to switch)</em></h3>
-
-Full Name: <%= current_user.full_name %>
+<h3>Your Mentor Mode is currently turned: <strong><%= link_to current_user.mentor ? "ON" : "OFF" , toggle_url %></strong> (click to switch)</h3>
+<h4>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<em>(If turned on, you are open to new users adding you as their mentor)</em></h4>
+<h2>Full Name: <%= current_user.full_name %></h2>
+<h2>Email: <%= current_user.email %></h2>
