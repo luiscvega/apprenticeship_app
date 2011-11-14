@@ -1,14 +1,16 @@
 <h1>Your Apprenticeships</h1>
 
-<% @apprenticeships.each do |apprenticeship| %>
-  <% student = apprenticeship.student ; mentor = apprenticeship.mentor %>
-  <p>
-    Apprenticeship #<%= apprenticeship.id %>: 
-    Student is <%= student.first_name %> <%= student.last_name %>.
-    Mentor is <%= mentor.first_name %> <%= mentor.last_name %>.
-    <%= link_to "See Messages", apprenticeship_messages_url(apprenticeship) %> |
-    <%= link_to "See Apprenticeship", apprenticeship_url(apprenticeship) %>
-  </p>
-<% end %>
-
 <p><%= link_to "Add A New Apprenticeship", new_apprenticeship_url %></p>
+
+<table>
+  <% @apprenticeships.each do |apprenticeship| %>
+    <% student = apprenticeship.student ; mentor = apprenticeship.mentor %>
+    <tr>
+      <td>Apprenticeship #<%= apprenticeship.id %>:</td>
+      <td>Student is <%= student.first_name %> <%= student.last_name %>.</td>
+      <td>Mentor is <%= mentor.first_name %> <%= mentor.last_name %>.</td>
+      <td><%= link_to "See Messages", apprenticeship_messages_url(apprenticeship) %></td>
+      <td><%= link_to "See Apprenticeship", apprenticeship_url(apprenticeship) %></td>
+    </tr>
+  <% end %>
+</table>

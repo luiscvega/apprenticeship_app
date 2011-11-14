@@ -19,7 +19,7 @@
 
   <div>
     <p><% if logged_in? %>
-      <%= current_user.first_name %> | 
+      Welcome <%= current_user.full_name %>! | 
       <%= link_to "Apprenticeships", apprenticeships_url %> | 
       <%= link_to "Sign Out", signout_url, :method => :delete %>
     <% else %>
