@@ -21,8 +21,11 @@ class ApprenticeshipsController < ApplicationController
   def new
     @available_mentors = User.where(:mentor => true)
     @available_mentors = User.where("id <> ?", current_user.id)
-    @unavailable_mentors = current_user.apprenticeships.map do |apprenticeship|
-      apprenticeship.mentor
+    @unavailable_mentors = []
+    
+    current_user.apprenticeships.each do |apprenticeship|
+      @unavailable_mentors << apprenticeship.mentor
+      @unavailable_mentors << apprenticeship.student
     end
     
     @available_mentors =   @available_mentors.reject do |mentor|
