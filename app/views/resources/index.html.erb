@@ -1,3 +1,29 @@
 <h1>Resources</h1>
-<p><%= link_to "Add Resource", new_apprenticeship_resource_url(current_apprenticeship) %></p>
-<%= render @resources %>
+<table>
+  <tr>
+    <th>Link</th>
+    <th></th>
+    <th>Description</th>
+  </tr>
+  <%= render @resources %>
+</table>
+
+<%= form_for @resource, :url => apprenticeship_resources_url do |f| %>
+  <div class="field">
+    <%= f.label :link %>
+    <%= f.text_field :link, :placeholder => "http://codeacademy.org"%> *kindly include "http://"
+  </div>
+  <div class="field">
+    <%= f.label :title %>
+    <%= f.text_field :title, :placeholder => "Code Academy Website"%>
+  </div>
+  <div class="field">
+    <%= f.label :description %>
+    <%= f.text_field :description, :style => "width: 400px;", :placeholder => "Write something here..."%>
+  </div>
+  <div class="action">
+    <%= f.submit "Add Resource" %>
+  </div>
+<% end %>
+<br />
+<p><%= link_to "Return to Apprenticeship", apprenticeship_url(current_apprenticeship) %></p>

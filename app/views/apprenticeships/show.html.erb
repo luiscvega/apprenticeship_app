@@ -1,9 +1,19 @@
 <h1>
-  Your Apprenticeship with your 
-  <%= @apprenticeship.student == current_user ? "mentor #{@mentor.full_name}." : "student #{@student.full_name}."%>
-</h1>
-
-<p><%= link_to "Messages", apprenticeship_messages_url(current_apprenticeship) %> | 
-<%= link_to "Resources", apprenticeship_resources_url(current_apprenticeship) %></p>
+  <%= @apprenticeship.student == current_user ? " #{@mentor.full_name}, your mentor" : "#{@student.full_name}, your student"%> and you.
+</h1>                                                                                                               
+                                                                                                                    
+<h3><%= link_to "Meetup" %> |                                 
+<%= link_to "Resources", apprenticeship_resources_url(current_apprenticeship) %></h3>
+<hr />
 
 <table><%= render @messages %></table>
+
+<%= paginate @messages %>
+
+<%= form_for @message, :url => messages_url(id: current_apprenticeship) do |f|%>
+  <div class="field">
+    <%= f.label "Send a message: " %>
+    <%= f.text_field :text, :style=>'width: 300px; height: 25px;', :placeholder => "Write something here..." %>
+    <%= f.submit "Send" %>
+  </div>
+<% end %>

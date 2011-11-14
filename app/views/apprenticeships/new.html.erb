@@ -9,7 +9,7 @@
   </tr>
 <% @available_mentors.each do |mentor| %>
   <tr>
-    <td><%= link_to "Add Mentor", apprenticeships_url(:id => mentor.id), :method => :post %></td>
+    <td class="table_column_left"><%= link_to "Add Mentor", apprenticeships_url(:id => mentor.id), :method => :post %></td>
     <td><strong><%= mentor.full_name %></strong> says "<em><%= mentor.description %></em>"</td>
   </tr>
 <% end %>

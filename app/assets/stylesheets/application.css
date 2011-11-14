@@ -10,9 +10,37 @@
 	background-color: #0973BA;
 }*/
 
+.clr {
+	clear: both;
+}
 
 #container {
 	background-color: white;
 	width: 960px;
 	margin: 100px auto;
+}
+
+table th.table_center {
+	text-align: center;
+}
+
+table td.table_center {
+	text-align: center;
+}
+
+table td.table_column_left {
+	text-align: right;
+	font-weight: bold;
+}
+
+table td.table_column_right {
+	width: 20%;
+}
+
+#user_nav_right {
+	float: right;
+}
+
+#user_nav_left {
+	float: left;
 }

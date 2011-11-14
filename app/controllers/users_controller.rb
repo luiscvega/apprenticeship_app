@@ -1,6 +1,9 @@
 class UsersController < ApplicationController
   def toggle
     current_user.toggle
-    redirect_to new_apprenticeship_url, notice: "Mentor Mode Changed!"
+    redirect_to :back, notice: "Mentor Mode Changed!"
+  end
+  
+  def show
   end
 end

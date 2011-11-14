@@ -1,35 +1,34 @@
 <h1>Your Apprenticeships</h1>
 
-<p><%= link_to "Add A New Apprenticeship", new_apprenticeship_url %></p>
+<p><%= link_to "Add Apprenticeship", new_apprenticeship_url %></p>
 
 <table>
   <tr>
-    <th>Number</th>
-    <th>Student</th>
-    <th>Mentor</th>
+    <th class="table_center">Number</th>
+    <th class="table_center">Student</th>
+    <th class="table_center">Mentor</th>
     <th></th>
     <th></th>
   </tr>
   <% @apprenticeships.each do |apprenticeship| %>
     <% student = apprenticeship.student ; mentor = apprenticeship.mentor %>
     <tr>
-      <td>Apprenticeship #<%= apprenticeship.id %>:</td>
-      <td>
+      <td class="table_center"><%= link_to "See Apprenticeship", apprenticeship_url(apprenticeship) %></td>
+      <td class="table_center">
         <% if current_user == student %>
-          <em><strong>You</strong></em>
+          <strong>You</strong>
         <% else %>
           <%= student.full_name %>
         <% end %>
       </td>
-      <td>
+      <td class="table_center">
         <% if current_user == mentor %>
           <em><strong>You</strong></em>
         <% else %>
           <%= mentor.full_name %>
         <% end %>
       </td>
-      <td><%= link_to "See Messages", apprenticeship_messages_url(apprenticeship) %></td>
-      <td><%= link_to "See Apprenticeship", apprenticeship_url(apprenticeship) %></td>
+      <td><%= link_to "Resources", apprenticeship_resources_url(apprenticeship) %></td>
     </tr>
   <% end %>
 </table>

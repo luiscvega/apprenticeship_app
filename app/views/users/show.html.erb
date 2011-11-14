@@ -1,0 +1,5 @@
+<h1>Account Settings</h1>
+
+<h3><em>Your Mentor Mode is currently turned: <strong><%= link_to current_user.mentor ? "ON" : "OFF" , toggle_url %></strong> (click to switch)</em></h3>
+
+Full Name: <%= current_user.full_name %>

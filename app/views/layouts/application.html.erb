@@ -17,22 +17,29 @@
 
   <h1>Code Academy Apprenticeships</h1>
 
-  <div>
-    <p><% if logged_in? %>
-      Welcome <%= current_user.full_name %>! | 
-      <%= link_to "Apprenticeships", apprenticeships_url %> | 
-      <%= link_to "Sign Out", signout_url, :method => :delete %>
-    <% else %>
-      <%= link_to "Sign In", signin_url %>
-    <% end %></p>
-  </div>
-
   <% flash.each do |key, value| %>
     <div class="flash <%= key %>"><%= value %></div>
   <% end %>
+
+  <div class="clr"></div>
+
+  <div>
+    <% if logged_in? %>
+      <div id="user_nav_right">
+        Welcome <%= current_user.full_name %>! | 
+        <%= link_to "Apprenticeships", apprenticeships_url %> | 
+        <%= link_to "Account Settings", user_url(current_user) %> | 
+        <%= link_to "Sign Out", signout_url, :method => :delete %>
+      </div>
+    <% else %>
+      <div id="user_nav_left"><%= link_to "Sign In", signin_url %></div>
+    <% end %>
+    <div class="clr"></div>
+    <br />
+  </div>
+
   <hr />
   <%= yield %>
-  <%= debug(params) if Rails.env.development? %>  
 </div>
 
 </body>

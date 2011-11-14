@@ -1,4 +1,5 @@
-<p>
-  <%= link_to resource.title, resource.link, :target => :_blank %> (added by <%= resource.user.full_name %>)<br />
-  <%= resource.description %>
-</p>
+<tr>
+  <td class="table_column_left"><%= link_to resource.title, resource.link, :target => :_blank %></td>
+  <td>added by <%= resource.user.full_name %></td>
+  <td><%= resource.description %></td>
+</tr>

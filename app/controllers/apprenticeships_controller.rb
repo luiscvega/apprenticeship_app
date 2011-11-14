@@ -7,7 +7,9 @@ class ApprenticeshipsController < ApplicationController
   
   def show
     @apprenticeship = current_apprenticeship
-    @messages = current_apprenticeship.messages.all
+    @messages = current_apprenticeship.messages.page(params[:page]).per(5)
+    @resources = current_apprenticeship.resources.all
+    @message = Message.new
 
     if current_user == @apprenticeship.student
       @student = current_user

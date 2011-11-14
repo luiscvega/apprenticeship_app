@@ -11,9 +11,9 @@ class MessagesController < ApplicationController
     @message.user = current_user
     
     if @message.save
-      redirect_to apprenticeship_messages_url, :notice => "You sent a message!"
+      redirect_to apprenticeship_url(current_apprenticeship), :notice => "You sent a message!"
     else
-      redirect_to apprenticeship_messages_url, :notice => "Invalid message."
+      redirect_to apprenticeship_url(current_apprenticeship), :notice => "Invalid message."
     end
   end
 end

@@ -3,6 +3,7 @@ class ResourcesController < ApplicationController
 
   def index
     @resources = current_apprenticeship.resources.all
+    @resource = Resource.new
   end
   
   def new
@@ -14,9 +15,9 @@ class ResourcesController < ApplicationController
     @resource.user = current_user
     
     if @resource.save
-      redirect_to apprenticeship_resources_url, :notice => "You sent a message!"
+      redirect_to apprenticeship_resources_url, :notice => "Hooray! You've added a resource!"
     else
-      redirect_to apprenticeship_resources_url, :notice => "Invalid message."
+      redirect_to apprenticeship_resources_url, :notice => "Hmm, your resource wasn't added."
     end
   end
 end

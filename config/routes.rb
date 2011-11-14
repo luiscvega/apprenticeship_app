@@ -9,6 +9,7 @@ ApprenticeshipAppV2::Application.routes.draw do
   get "users/toggle", :as => :toggle
   
   resources :users
+  resources :messages
   
   resources :apprenticeships do
     resources :messages
