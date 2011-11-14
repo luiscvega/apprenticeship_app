@@ -1,1 +1,8 @@
 <h1>Add a New Apprenticeship</h1>
+
+<% @available_mentors.each do |mentor| %>
+  <p>
+    <%= link_to "Add Mentor", apprenticeships_url(:id => mentor.id), :method => :post %> 
+    <%= mentor.full_name %> says "<em><%= mentor.description %></em>"
+  </p>
+<% end %>
