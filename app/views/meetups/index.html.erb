@@ -1,0 +1,13 @@
+<h1>Meetups</h1>
+
+<table><%= render @meetups %></table>
+
+<%= form_for @meetup, :url => apprenticeship_meetups_url do |f|%>
+  <div class="field">
+    <%= f.label :text %><br />
+    <%= f.text_area :text, :rows => 3 %>
+  </div>
+  <div class="action">
+    <%= f.submit "Send" %>
+  </div>
+<% end %>

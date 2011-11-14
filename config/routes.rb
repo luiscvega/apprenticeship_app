@@ -14,6 +14,7 @@ ApprenticeshipAppV2::Application.routes.draw do
   resources :apprenticeships do
     resources :messages
     resources :resources
+    resources :meetups
   end
   
   

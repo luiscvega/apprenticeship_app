@@ -45,4 +45,17 @@ describe Apprenticeship do
     end
     
   end
+  
+  describe "meetup associations" do
+
+     before(:each) do
+       @apprenticeship = Apprenticeship.create(:mentor_id => @mentor.id, :student_id => @student.id)
+       @meetup = {time: "1:11:11", date: "11/11/11", venue: "Groupon", description: "Talk about project."}
+     end
+
+     it "should have a meetups attribute to create a meetup with the correct apprenticeship" do
+       @apprenticeship.meetups.create(@meetup).should be_true
+     end
+
+   end
 end

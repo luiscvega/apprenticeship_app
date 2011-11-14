@@ -2,6 +2,8 @@ class Apprenticeship < ActiveRecord::Base
   
   has_many :messages
   
+  has_many :meetups
+  
   has_many :resources
   
   belongs_to :mentor,
