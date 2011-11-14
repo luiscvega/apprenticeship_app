@@ -1,4 +1,6 @@
 class ApprenticeshipsController < ApplicationController
+  before_filter :require_user
+  
   def index
     @apprenticeships = current_user.apprenticeships
   end
