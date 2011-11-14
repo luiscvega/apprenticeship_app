@@ -1,5 +1,7 @@
 source 'http://rubygems.org'
 
+gem 'kaminari'
+
 gem 'rails', '3.1.1'
 
 # Bundle edge Rails instead:

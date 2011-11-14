@@ -1,5 +1,7 @@
 <h1>Add a New Apprenticeship</h1>
 
+<h3><em>Your Mentor Mode is currently turned: <strong><%= link_to current_user.mentor ? "ON" : "OFF" , toggle_url %></strong> (click to switch)</em></h3>
+
 <table>
   <tr>
     <td></td>
@@ -12,3 +14,5 @@
   </tr>
 <% end %>
 </table>
+
+<%= paginate @available_mentors %>

@@ -21,5 +21,15 @@ class User < ActiveRecord::Base
   def full_name
     self.first_name + " " + self.last_name
   end
+  
+  def toggle
+    if self.mentor == true
+      self.mentor = false
+      self.save
+    else
+      self.mentor = true
+      self.save
+    end
+  end
 
 end

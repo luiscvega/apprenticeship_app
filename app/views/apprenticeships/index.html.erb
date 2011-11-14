@@ -14,8 +14,20 @@
     <% student = apprenticeship.student ; mentor = apprenticeship.mentor %>
     <tr>
       <td>Apprenticeship #<%= apprenticeship.id %>:</td>
-      <td><%= current_user == student ? "You" : student.full_name %></td>
-      <td><%= current_user == mentor ? "You" : mentor.full_name %></td>
+      <td>
+        <% if current_user == student %>
+          <em><strong>You</strong></em>
+        <% else %>
+          <%= student.full_name %>
+        <% end %>
+      </td>
+      <td>
+        <% if current_user == mentor %>
+          <em><strong>You</strong></em>
+        <% else %>
+          <%= mentor.full_name %>
+        <% end %>
+      </td>
       <td><%= link_to "See Messages", apprenticeship_messages_url(apprenticeship) %></td>
       <td><%= link_to "See Apprenticeship", apprenticeship_url(apprenticeship) %></td>
     </tr>

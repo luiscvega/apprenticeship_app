@@ -6,6 +6,8 @@ ApprenticeshipAppV2::Application.routes.draw do
   post "sessions/create"
   delete "sessions/destroy", :as => :signout
   
+  get "users/toggle", :as => :toggle
+  
   resources :users
   
   resources :apprenticeships do
