@@ -20,4 +20,23 @@ class ResourcesController < ApplicationController
       redirect_to apprenticeship_resources_url, :notice => "Hmm, your resource wasn't added."
     end
   end
+  
+  def edit
+    @resource = Resource.find(params[:id])
+  end
+  
+  def update
+    @resource = Resource.find(params[:id])
+    @resource.update_attributes(params[:resource])
+    if @resource.save
+      redirect_to apprenticeship_resources_url, :notice => "Hooray! You've added a resource!"
+    else
+      redirect_to apprenticeship_resources_url, :notice => "Hmm, your resource wasn't added."
+    end
+  end
+  
+  def destroy
+    Resource.find(params[:id]).destroy
+    redirect_to apprenticeship_resources_url, :notice => "Resource was deleted! Kaboom!" 
+  end
 end
