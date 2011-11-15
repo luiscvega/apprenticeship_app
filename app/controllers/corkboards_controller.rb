@@ -1,0 +1,2 @@
+class CorkboardsController < ApplicationController
+end

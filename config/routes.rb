@@ -12,6 +12,7 @@ ApprenticeshipAppV2::Application.routes.draw do
   
   resources :users
   resources :messages
+  resources :corkboards
   
   resources :apprenticeships do
     resources :messages

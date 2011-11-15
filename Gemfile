@@ -2,6 +2,8 @@ source 'http://rubygems.org'
 
 gem 'kaminari'
 
+gem 'jeditable-rails'
+
 gem 'rails', '3.1.1'
 
 # Bundle edge Rails instead:

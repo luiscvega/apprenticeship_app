@@ -10,6 +10,7 @@ class ApprenticeshipsController < ApplicationController
     @messages = current_apprenticeship.messages.page(params[:page]).per(5)
     @resources = current_apprenticeship.resources.all
     @message = Message.new
+    @corkboard = Corkboard.new
 
     if current_user == @apprenticeship.student
       @student = current_user

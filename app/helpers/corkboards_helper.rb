@@ -1,0 +1,2 @@
+module CorkboardsHelper
+end
