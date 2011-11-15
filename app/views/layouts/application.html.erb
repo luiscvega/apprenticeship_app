@@ -46,7 +46,19 @@
 
   <hr />
   <%= yield %>
+  
+  <br />
+  <hr />
+  <div id="feedback">  <%= form_tag feedbacks_create_url do %>
+      <%= label_tag :text, "Hooray for your feedback!" %><br />
+      <%= text_area_tag :text %><br />
+      <%= submit_tag "Send Feedback" %>
+    <% end %>
+  </div>
+  <br />
+  <br />
+  <br />
+  <div id="footer">&#169; Apprenticeship App | Luis Vega | 2011</div>
 </div>
-
 </body>
 </html>

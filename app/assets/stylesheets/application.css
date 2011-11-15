@@ -76,10 +76,19 @@ a {
 	width: 80px;
 }
 
-3switch {
+#switch {
 	float: left;
 }
 
 #switch #button {
 	float: left;
+}
+
+#footer {
+	text-align: center;
+}
+
+#feedback {
+	width: 150px;
+	margin: auto;
 }

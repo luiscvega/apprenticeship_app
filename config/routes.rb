@@ -2,8 +2,11 @@ ApprenticeshipAppV2::Application.routes.draw do
   
   root :to => "sessions#new"
 
+  
   get "users/new", as: :signup
-
+  
+  match "signup" => "users#new"
+  
   get "sessions/new", :as => :signin
   post "sessions/create"
   delete "sessions/destroy", :as => :signout
@@ -26,6 +29,8 @@ ApprenticeshipAppV2::Application.routes.draw do
       put :update_attribute_on_the_spot
     end
   end
+  
+  post "feedbacks/create"
   
   
   # The priority is based upon order of creation:
