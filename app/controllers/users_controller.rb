@@ -18,11 +18,7 @@ class UsersController < ApplicationController
     if @user.save
       session[:user_id] = @user.id
 
-      flash[:notice] = "Wow! We're glad you're here!"
-      flash[:notice1] = "This is the Apprenticeships Page. Here you can check current apprenticeships and add new ones."
-      flash[:notice2] = "Remember, you can ONLY ADD MENTORS, you must seek out your guide. But you can be a mentor to someone else."
-      flash[:notice3] = "If you don't want students to add you as their mentor, turn off your Mentor Mode"
-      flash[:notice4] = "Finally, enjoy! - Luis"
+      flash[:notice] = "Wow! We're glad you're here! This is the Apprenticeships Page. Here you can check current apprenticeships and add new ones. Remember, you can ONLY ADD MENTORS, you must seek out your guide, which I think is a truly humbling gesture. But you can be a mentor to someone else as well. If you don't want students to add you as their mentor, turn off your Mentor Mode. I'm glad to have built this. I've learned a lot doing so. Finally, enjoy! - Luis"
 
       redirect_to apprenticeships_url
       
