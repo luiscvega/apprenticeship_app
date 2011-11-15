@@ -21,11 +21,13 @@ class ApprenticeshipsController < ApplicationController
   end
   
   def new
-    @available_mentors = User.where(:mentor => true)
-    @available_mentors = @available_mentors.where("id <> ?", current_user.id)
-    @available_mentors = @available_mentors.where(["id NOT IN (?)", current_user.apprenticeships.map {|u| u.mentor.id }])
+    @available_mentors = User.where(:mentor => true) # ADD USERS WHOSE MENTOR MODE IS ON
+    @available_mentors = @available_mentors.where(["id <> ?", current_user.id]) # REMOVE CURRENT USER
+    @available_mentors = @available_mentors.where(["id NOT IN (?)", current_user.apprenticeships.map {|u| u.mentor.id;u.student.id }]) if current_user.apprenticeships.any?
+  
     
-    @available_mentors = @available_mentors.order("first_name ASC").page(params[:page]).per(5)
+    
+    @available_mentors = @available_mentors.order("first_name ASC").page(params[:page]).per(10)
     
     # @unavailable_mentors = []
     # 
@@ -48,7 +50,7 @@ class ApprenticeshipsController < ApplicationController
     @apprenticeship.mentor = User.find(params[:id])
 
     if @apprenticeship.save
-      redirect_to apprenticeships_url, :notice => "Apprenticeship created!!"
+      redirect_to apprenticeships_url, :notice => "Apprenticeship created!"
     else
       redirect_to new_apprenticeship_url, :notice => "Apprenticeship not established.."
     end

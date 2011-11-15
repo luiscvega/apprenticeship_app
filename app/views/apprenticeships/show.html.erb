@@ -1,8 +1,7 @@
-<h1>
-  <%= @apprenticeship.student == current_user ? " #{@mentor.full_name}, your mentor" : "#{@student.full_name}, your student"%> and you.
-</h1>                                                                                                               
+<p><%= link_to "Apprenticeships", apprenticeships_url %> > Current Apprenticeship</p>
+<h1><%= @apprenticeship.student == current_user ? " #{@mentor.full_name} is your mentor" : "#{@student.full_name} is your student"%>.</h1>
                                                                                                                     
-<h3><%= link_to "Meetup" %> |                                 
+<h3><%= link_to "Meetups", apprenticeship_meetups_url(current_apprenticeship) %> |
 <%= link_to "Resources", apprenticeship_resources_url(current_apprenticeship) %></h3>
 <hr />
 

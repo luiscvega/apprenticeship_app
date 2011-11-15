@@ -1,7 +1,9 @@
 ApprenticeshipAppV2::Application.routes.draw do
   
   root :to => "sessions#new"
-  
+
+  get "users/new", as: :signup
+
   get "sessions/new", :as => :signin
   post "sessions/create"
   delete "sessions/destroy", :as => :signout

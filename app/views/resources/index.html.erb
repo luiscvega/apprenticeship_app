@@ -1,3 +1,8 @@
+<p>
+  <%= link_to "Apprenticeships", apprenticeships_url %> > 
+  <%= link_to "Current Apprenticeship", apprenticeship_url(current_apprenticeship) %> >
+  Resources
+</p>
 <h1>Resources</h1>
 <table>
   <tr>
@@ -7,18 +12,18 @@
   </tr>
   <%= render @resources %>
 </table>
-
+<hr />
 <%= form_for @resource, :url => apprenticeship_resources_url do |f| %>
   <div class="field">
-    <%= f.label :link %>
-    <%= f.text_field :link, :placeholder => "http://codeacademy.org"%> *kindly include "http://"
+    <%= f.label :link, "Link: " %>
+    <%= f.text_field :link, :placeholder => "http://codeacademy.org"%> <em>(kindly include "http://")</em>
   </div>
   <div class="field">
-    <%= f.label :title %>
+    <%= f.label :title, "Title: " %>
     <%= f.text_field :title, :placeholder => "Code Academy Website"%>
   </div>
   <div class="field">
-    <%= f.label :description %>
+    <%= f.label :description, "Description: " %>
     <%= f.text_field :description, :style => "width: 400px;", :placeholder => "Write something here..."%>
   </div>
   <div class="action">
@@ -26,4 +31,3 @@
   </div>
 <% end %>
 <br />
-<p><%= link_to "Return to Apprenticeship", apprenticeship_url(current_apprenticeship) %></p>

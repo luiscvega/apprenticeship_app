@@ -1,6 +1,6 @@
 <tr>
   <td><%= meetup.venue %></td>
   <td><%= meetup.date %></td>
-  <td><%= meetup.time %></td>
+  <td><%= meetup.time.localtime.strftime("%I:%m %p") %></td>
   <td><%= meetup.description %></td>
 </tr>

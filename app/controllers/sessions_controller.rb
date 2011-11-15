@@ -1,4 +1,6 @@
 class SessionsController < ApplicationController
+  
+  before_filter :default_page, :only => :new
 
   def new
   end
@@ -21,5 +23,11 @@ class SessionsController < ApplicationController
   def destroy
     reset_session
     redirect_to signin_url, :notice => "You were signed out. Come back soon!"
+  end
+  
+  private
+  
+  def default_page
+    redirect_to apprenticeships_url if logged_in?
   end
 end

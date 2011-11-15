@@ -15,7 +15,7 @@
 
 <div id="container">
 
-  <h1>Code Academy Apprenticeships</h1>
+  <h1><strong>Code Academy Apprenticeships</strong></h1>
 
   <% flash.each do |key, value| %>
     <div class="flash <%= key %>"><%= value %></div>
@@ -26,13 +26,16 @@
   <div>
     <% if logged_in? %>
       <div id="user_nav_right">
-        Welcome <%= current_user.full_name %>! | 
+        Welcome <strong><%= current_user.full_name %></strong>! | 
         <%= link_to "Apprenticeships", apprenticeships_url %> | 
         <%= link_to "Account Settings", user_url(current_user) %> | 
         <%= link_to "Sign Out", signout_url, :method => :delete %>
       </div>
     <% else %>
-      <div id="user_nav_left"><%= link_to "Sign In", signin_url %></div>
+      <div id="user_nav_left">
+        <%= link_to "Sign Up", signup_url %> | 
+        <%= link_to "Sign In", signin_url %>
+      </div>
     <% end %>
     <div class="clr"></div>
     <br />

@@ -44,3 +44,11 @@ table td.table_column_right {
 #user_nav_left {
 	float: left;
 }
+
+a {
+	text-decoration: none;
+}
+
+#button_inline {
+	display: inline;
+}
