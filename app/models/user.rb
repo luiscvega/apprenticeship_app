@@ -14,6 +14,9 @@ class User < ActiveRecord::Base
            :class_name => "Apprenticeship",
            :foreign_key => "student_id"
            
+  validates_presence_of :email, :first_name, :last_name, :description
+  validates_uniqueness_of :email
+           
   def apprenticeships
     self.mentorships + self.studentships
   end
