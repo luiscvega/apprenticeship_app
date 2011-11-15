@@ -2,7 +2,7 @@ source 'http://rubygems.org'
 
 gem 'kaminari'
 
-gem 'jeditable-rails'
+gem 'on_the_spot'
 
 gem 'rails', '3.1.1'
 

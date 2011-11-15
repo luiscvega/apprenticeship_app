@@ -12,12 +12,19 @@ ApprenticeshipAppV2::Application.routes.draw do
   
   resources :users
   resources :messages
-  resources :corkboards
+  resources :corkboards do
+    collection do
+      put :update_attribute_on_the_spot
+    end
+  end
   
   resources :apprenticeships do
     resources :messages
     resources :resources
     resources :meetups
+    collection do
+      put :update_attribute_on_the_spot
+    end
   end
   
   

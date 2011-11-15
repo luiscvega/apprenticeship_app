@@ -1,0 +1,7 @@
+<h1>Corkboard</h1>
+<%= on_the_spot_edit @corkboard, :notes, :type => :textarea, :rows => 10, :columns => 55 %>
+
+<%= form_for @corkboard do |f| %>
+  <%= f.text_area :notes %>
+  <%= f.submit "Save" %>
+<% end %>

@@ -1,5 +1,7 @@
 class Apprenticeship < ActiveRecord::Base
   
+  has_one :corkboard
+  
   has_many :messages
   
   has_many :meetups

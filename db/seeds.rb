@@ -41,5 +41,6 @@ while (i < apprenticeships.count)
   apprenticeship.student = User.find_by_first_name(students[i].split.first) && User.find_by_last_name(students[i].split.last)
   apprenticeship.mentor = User.find_by_first_name(mentors[i].split.first) && User.find_by_last_name(mentors[i].split.last)
   apprenticeship.save
+  apprenticeship.build_corkboard(notes: "Testing!").save
   i+=1
 end
