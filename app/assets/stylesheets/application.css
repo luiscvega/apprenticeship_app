@@ -52,3 +52,34 @@ a {
 #button_inline {
 	display: inline;
 }
+
+#corkboard {
+	float: left;
+
+}
+
+#corkboard #board {
+	width: 233px;
+	height: 270px;
+	border: 1px solid gray ;	
+}
+
+#messages_wrap {
+	float: right;
+}
+
+#messages_wrap table {
+	width: 700px;
+}
+
+#messages_wrap table td.table_column_left{
+	width: 80px;
+}
+
+3switch {
+	float: left;
+}
+
+#switch #button {
+	float: left;
+}

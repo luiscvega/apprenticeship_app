@@ -9,7 +9,7 @@ class ApprenticeshipsController < ApplicationController
   
   def show
     @apprenticeship = current_apprenticeship
-    @messages = current_apprenticeship.messages.page(params[:page]).per(5)
+    @messages = current_apprenticeship.messages.order(:created_at).page(params[:page]).per(13)
     @resources = current_apprenticeship.resources.all
     @message = Message.new
     @corkboard = @apprenticeship.corkboard
@@ -26,7 +26,8 @@ class ApprenticeshipsController < ApplicationController
   def new
     @available_mentors = User.where(:mentor => true) # ADD USERS WHOSE MENTOR MODE IS ON
     @available_mentors = @available_mentors.where(["id <> ?", current_user.id]) # REMOVE CURRENT USER
-    @available_mentors = @available_mentors.where(["id NOT IN (?)", current_user.apprenticeships.map {|u| u.mentor.id;u.student.id }]) if current_user.apprenticeships.any?
+    @available_mentors = @available_mentors.where(["id NOT IN (?)", current_user.apprenticeships.map {|u| u.student.id }]) if current_user.apprenticeships.any?
+    @available_mentors = @available_mentors.where(["id NOT IN (?)", current_user.apprenticeships.map {|u| u.mentor.id }]) if current_user.apprenticeships.any?
   
     @available_mentors = @available_mentors.order("first_name ASC").page(params[:page]).per(10)
     

@@ -1,14 +1,21 @@
 <p><%= link_to "Apprenticeships", apprenticeships_url %> > Current Apprenticeship</p>
-<h1><%= @apprenticeship.student == current_user ? " #{@mentor.full_name} is your mentor" : "#{@student.full_name} is your student"%>.</h1>
+<h1><%= @apprenticeship.student == current_user ? " #{@mentor.full_name} is your mentor" : "#{@student.full_name} is your student"%></h1>
                                                                                                                     
 <h3><%= link_to "Meetups", apprenticeship_meetups_url(current_apprenticeship) %> |
 <%= link_to "Resources", apprenticeship_resources_url(current_apprenticeship) %></h3>
+
 <hr />
-<h1>Corkboard</h1>
 
-<%= on_the_spot_edit @corkboard, :notes, :type => :textarea, :rows => 10, :columns => 55 %>
 
-<table><%= render @messages %></table>
+
+<div id="corkboard">
+<h3>Corkboard</h3>
+<div class="clr"></div>
+
+<div id="board"><%= on_the_spot_edit @corkboard, :notes, :type => :textarea, :rows => 20, :columns => 31 %></div></div>
+
+<div id="messages_wrap">
+<h3 class="messages_header">Messages</h3>
 
 <%= paginate @messages %>
 
@@ -19,3 +26,7 @@
     <%= f.submit "Send" %>
   </div>
 <% end %>
+
+<table><%= render @messages %></table>
+
+</div>
