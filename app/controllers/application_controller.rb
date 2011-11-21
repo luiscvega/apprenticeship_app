@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::Base
+  before_filter :require_user
+  
   protect_from_forgery
   
   helper_method :current_user, :logged_in?, :current_apprenticeship

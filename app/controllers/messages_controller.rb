@@ -1,5 +1,4 @@
 class MessagesController < ApplicationController
-  before_filter :require_user
     
   def index
     @messages = current_apprenticeship.messages.all

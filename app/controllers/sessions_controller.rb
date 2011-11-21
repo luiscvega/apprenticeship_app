@@ -1,6 +1,5 @@
 class SessionsController < ApplicationController
-  
-  before_filter :default_page, :only => :new
+  skip_before_filter :require_user
 
   def new
   end

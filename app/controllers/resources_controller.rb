@@ -1,5 +1,4 @@
 class ResourcesController < ApplicationController
-  before_filter :require_user
 
   def index
     @resources = current_apprenticeship.resources.all
