@@ -9,11 +9,12 @@ gem 'rails', '3.1.1'
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
 
-
+gem 'haml'
 
 group :development, :test do
   gem "rspec-rails", "~> 2.7.0"
   gem 'sqlite3'
+  gem 'haml-rails'
 end
 
 group :production do
