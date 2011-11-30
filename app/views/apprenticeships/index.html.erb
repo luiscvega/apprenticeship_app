@@ -12,7 +12,9 @@
     <% @apprenticeships.each do |apprenticeship| %>
       <% student = apprenticeship.student ; mentor = apprenticeship.mentor %>
       <tr>
-        <td class="table_center"><%= link_to "See Apprenticeship", apprenticeship_url(apprenticeship) %></td>
+        <td class="table_center">
+          <%= link_to "See Apprenticeship", apprenticeship_url(apprenticeship) %>
+        </td>
         <td class="table_center">
           <% if current_user == student %>
             <strong>You</strong>

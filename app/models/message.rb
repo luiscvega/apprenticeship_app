@@ -11,7 +11,9 @@ class Message < ActiveRecord::Base
   belongs_to :user
   
   def notify
-    self.create_notification
+    notification = self.build_notification
+    notification.apprenticeship = self.apprenticeship
+    notification.save
   end
 
 end
