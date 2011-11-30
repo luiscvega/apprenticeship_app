@@ -1,0 +1,28 @@
+%p
+  = link_to "Apprenticeships", apprenticeships_url
+  > Current Apprenticeship
+%h3
+  = link_to "Meetups", apprenticeship_meetups_url(current_apprenticeship)
+  |
+  = link_to "Resources", apprenticeship_resources_url(current_apprenticeship)
+%hr
+
+#corkboard
+  %h3 Corkboard
+  %clr
+  #board
+    = on_the_spot_edit @corkboard, :notes, :type => :textarea, :rows => 20, :columns => 31
+
+#messages_wrap
+  %h3.messages_header Messages
+  = paginate @messages
+  
+  = form_for @message, url: messages_url(id: current_apprenticeship) do |f|
+    .field
+      = f.label "Send a message: "
+      = f.text_field :text, style: 'width: 300px; height: 25px', placeholder: "Write something here..."
+      = f.submit "Send"
+
+  %table
+    = render @messages
+    

@@ -1,0 +1,33 @@
+- if @apprenticeships.any? 
+  %table
+    %tr
+      %th.table_center
+      %th.table_center Student
+      %th.table_center Mentor
+      %th
+      %th
+    %tr
+    - @apprenticeships.each do |apprenticeship|
+      - student = apprenticeship.student ; mentor = apprenticeship.mentor
+      %tr
+        %td.table_center
+          = link_to "See Apprenticeship", apprenticeship_url(apprenticeship)
+        %td.table_center
+          - if current_user == student
+            %strong You
+          - else
+            = student.full_name
+        %td.table_center
+          - if current_user == mentor
+            %strong You
+          - else
+            = mentor.full_name
+        %td.table_center
+          = link_to "Resources", apprenticeship_resources_url(apprenticeship)
+        %td.table_center
+          = link_to "Meetups", apprenticeship_meetups_url(apprenticeship)
+- else
+  %h3{:style => "text-align: center;"}
+    You currently have no apprenticeships. 
+    = link_to "Add an apprenticeship!", new_apprenticeship_url
+%p= link_to "+ Add Apprenticeship", new_apprenticeship_url

@@ -1,0 +1,22 @@
+%h1 Add A New Apprenticehip!
+
+%h3
+  Your Mentor Mode is currently turned:
+  %strong= link_to current_user.mentor ? "ON" : "OFF" , toggle_url
+  (click to switch)*
+%p
+  %em *(If turned on, you are open to new users adding you as their mentor)
+
+%table
+  %tr
+    %td
+    %td Name
+  - @available_mentors.each do |mentor|
+    %tr
+      %td.table_column_left= link_to "Add Mentor", apprenticeships_url(:id => mentor.id), :method => :post
+      %td
+        %strong= mentor.full_name
+        says "
+        %em= mentor.description
+
+= paginate @available_mentors
