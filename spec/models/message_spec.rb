@@ -33,5 +33,22 @@ describe Message do
     end
 
   end
+  
+  describe "notification association" do
+    before(:each) do
+      @message = @student.messages.create(:text => "I'm a message!")
+    end
+    
+    it "should have a 'notification' method indicating its has_one association" do
+      @message.should respond_to(:notification)
+    end
+
+    it "should have a 'notify' method after saving" do
+      @message.should respond_to(:notify)
+    end
+
+  end
+  
+    
 
 end
