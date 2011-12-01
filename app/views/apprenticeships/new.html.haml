@@ -1,11 +1,6 @@
 %h1 Add A New Apprenticehip!
 
-%h3
-  Your Mentor Mode is currently turned:
-  %strong= link_to current_user.mentor ? "ON" : "OFF" , toggle_url
-  (click to switch)*
-%p
-  %em *(If turned on, you are open to new users adding you as their mentor)
+= render 'users/mentor_mode'
 
 %table
   %tr

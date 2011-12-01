@@ -1,0 +1,11 @@
+%h1 Account Settings
+
+= render 'mentor_mode'
+
+%hr
+
+%p Full Name: #{current_user.full_name}
+%p Email: #{current_user.email}
+%p Description: #{current_user.description}
+
+= link_to "Edit Account", edit_user_url(current_user)

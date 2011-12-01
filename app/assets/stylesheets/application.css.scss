@@ -6,10 +6,6 @@
  *= require_tree . 
 */
 
-/*body {
-	background-color: #0973BA;
-}*/
-
 .clr {
 	clear: both;
 }
@@ -53,6 +49,8 @@ a {
 	display: inline;
 }
 
+/*CORKBOARD*/
+
 #corkboard {
 	float: left;
 
@@ -64,29 +62,23 @@ a {
 	border: 1px solid gray ;	
 }
 
-#messages_wrap {
-	float: right;
-}
+/*MESSAGES*/
 
 #messages_wrap table {
-	width: 700px;
+	width: 960px;
+	
+	td.table_column_left {
+		width: 100px;
+	}
 }
 
-#messages_wrap table td.table_column_left{
-	width: 80px;
-}
-
-#switch {
-	float: left;
-}
-
-#switch #button {
-	float: left;
-}
+/*FOOTER*/
 
 #footer {
 	text-align: center;
 }
+
+/*FEEDBACK*/
 
 #feedback {
 	width: 150px;

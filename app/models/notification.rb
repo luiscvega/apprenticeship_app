@@ -6,4 +6,4 @@ class Notification < ActiveRecord::Base
   def creator
     message.user || meetup.user || resource.user
   end
-ends
+end

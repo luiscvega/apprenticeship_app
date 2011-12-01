@@ -42,7 +42,11 @@ class UsersController < ApplicationController
   
   def toggle
     current_user.toggle
-    redirect_to :back
+    respond_to do |format|
+      format.html { redirect_to :back }
+      format.js   
+    end
+      
   end
   
 end
