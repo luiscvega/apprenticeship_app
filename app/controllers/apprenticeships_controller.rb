@@ -21,6 +21,12 @@ class ApprenticeshipsController < ApplicationController
       @student = @apprenticeship.student
       @mentor = current_user
     end
+    
+    @messages.each do |message|
+      if message.notification != nil && message.notification.creator != current_user
+        message.notification.destroy
+      end
+    end
   end
   
   def new

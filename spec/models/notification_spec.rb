@@ -24,5 +24,22 @@ describe Notification do
       @notification.apprenticeship.should == @apprenticeship
     end
   end
-  
+
+  describe "unique methods" do
+    before :each do
+      @message = @student.messages.create(:text => "I'm a message!")
+      @message.update_attributes(apprenticeship: @apprenticeship)
+      @notification = Notification.find_by_message_id(@message)
+    end
+    
+    it "should have a message/meetup/resource attribute indicating which message/meetup/resource it belongs to" do
+      @notification.should respond_to :message
+      @notification.message.should == @message
+    end
+    
+    it "should have creator attribute indicating who made the notification" do
+      @notification.should respond_to(:creator)
+      @notification.creator.should == @student
+    end
+  end
 end

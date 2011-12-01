@@ -11,7 +11,12 @@
       - student = apprenticeship.student ; mentor = apprenticeship.mentor
       %tr
         %td.table_center
-          = link_to "See Apprenticeship", apprenticeship_url(apprenticeship)
+          - array = apprenticeship.messages.select do |message|
+            - if message.notification
+              - message.notification.creator != current_user
+        
+          = link_to "See Apprenticeship #{"(#{array.count})" unless array.count == 0 }", apprenticeship_url(apprenticeship)
+
         %td.table_center
           - if current_user == student
             %strong You
@@ -22,8 +27,9 @@
             %strong You
           - else
             = mentor.full_name
-        %td.table_center
+        %td.table_center        
           = link_to "Resources", apprenticeship_resources_url(apprenticeship)
+          
         %td.table_center
           = link_to "Meetups", apprenticeship_meetups_url(apprenticeship)
 - else

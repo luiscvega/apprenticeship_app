@@ -1,3 +1,9 @@
 class Notification < ActiveRecord::Base
   belongs_to :apprenticeship
-end
+  
+  belongs_to :message
+  
+  def creator
+    message.user || meetup.user || resource.user
+  end
+ends
