@@ -5,33 +5,12 @@ class ApprenticeshipsController < ApplicationController
   
   def index
     @apprenticeships = current_user.apprenticeships
-
   end
   
   def show
-    @apprenticeship = current_apprenticeship
     @messages = current_apprenticeship.messages.order(:created_at).page(params[:page]).per(13)
-    @resources = current_apprenticeship.resources.all
-    @message = Message.new
-    @corkboard = @apprenticeship.corkboard
-
-    if current_user == @apprenticeship.student
-      @student = current_user
-      @mentor = @apprenticeship.mentor
-    else
-      @student = @apprenticeship.student
-      @mentor = current_user
-    end
-    
-    @messages.each do |message|
-      if message.notification != nil && message.notification.creator != current_user
-        message.notification.destroy
-      end
-    end
-    
-    @meetups = current_apprenticeship.meetups.all
-    @meetup = Meetup.new
-    
+    destroy_notification(@messages)
+    @message = Message.new  
   end
   
   def new

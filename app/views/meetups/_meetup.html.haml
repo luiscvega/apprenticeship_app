@@ -1,0 +1,7 @@
+%tr
+  %td= meetup.venue
+  %td= meetup.date
+  %td= meetup.time.localtime.strftime("%I:%m %p")
+  %td= meetup.description
+  %td= link_to "Edit", edit_apprenticeship_meetup_url(current_apprenticeship, meetup)
+  %td= link_to "Delete", apprenticeship_meetup_url(current_apprenticeship, meetup), :method => :delete

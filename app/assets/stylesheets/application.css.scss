@@ -6,7 +6,7 @@
  *= require_tree . 
 */
 
-.clr {
+.clear {
 	clear: both;
 }
 
@@ -33,20 +33,17 @@ table td.table_column_right {
 	width: 20%;
 }
 
-#user_nav_right {
-	float: right;
-}
-
-#user_nav_left {
-	float: left;
+#user_nav {
+	#right {
+		float: right;
+	}
+	#user_nav_left {
+		float: left;
+	}
 }
 
 a {
 	text-decoration: none;
-}
-
-#button_inline {
-	display: inline;
 }
 
 /*CORKBOARD*/

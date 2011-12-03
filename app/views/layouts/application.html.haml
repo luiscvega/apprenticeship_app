@@ -17,11 +17,11 @@
       - flash.each do |key, value|
         %div{:class => "flash #{key}"}= value
     
-      .clr
+      .clear
     
-      %div
+      #user_nav
         - if logged_in?
-          #user_nav_right
+          #right
             Welcome
             = succeed "!" do
               %strong= current_user.full_name
@@ -29,10 +29,10 @@
             = link_to "Account Settings", user_url(current_user)
             = link_to "Sign Out", signout_url, :method => :delete
         - else
-          #user_nav_left
+          #left
             = link_to "Sign Up", signup_url
             = link_to "Sign In", signin_url
-      .clr
+      .clear
       
       %hr      
       = yield

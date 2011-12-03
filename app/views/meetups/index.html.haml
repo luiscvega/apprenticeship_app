@@ -1,0 +1,20 @@
+%p
+  = link_to "Apprenticeships", apprenticeships_url
+  > 
+  = link_to "Current Apprenticeship", apprenticeship_url(current_apprenticeship)
+  >
+  Meetups
+
+%h1 Meetup
+
+%table
+  %tr
+    %th Venue
+    %th Date
+    %th Time
+    %th Description
+    %th
+    %th
+  = render @meetups
+
+= link_to "Add A Meetup", new_apprenticeship_meetup_url(current_apprenticeship)
