@@ -1,0 +1,11 @@
+#messages_wrap
+  = paginate @messages
+  
+  = form_for @message, url: messages_url(id: current_apprenticeship) do |f|
+    .field
+      = f.label "Send a message: "
+      = f.text_field :text, style: 'width: 300px; height: 25px', placeholder: "Write something here..."
+      = f.submit "Send"
+
+  %table
+    = render @messages

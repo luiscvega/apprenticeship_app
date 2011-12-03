@@ -1,11 +1,9 @@
 ApprenticeshipAppV2::Application.routes.draw do
-  
-  root :to => "sessions#new"
 
+  root :to => "sessions#new"
+  match "signup" => "users#new"
   
   get "users/new", as: :signup
-  
-  match "signup" => "users#new"
   
   get "sessions/new", :as => :signin
   post "sessions/create"
@@ -15,23 +13,28 @@ ApprenticeshipAppV2::Application.routes.draw do
   
   resources :users
   resources :messages
-  resources :corkboards do
-    collection do
-      put :update_attribute_on_the_spot
-    end
-  end
+
+  resources :meetups
   
   resources :apprenticeships do
     resources :messages
     resources :resources
     resources :meetups
-    collection do
-      put :update_attribute_on_the_spot
-    end
   end
   
   post "feedbacks/create"
   
+  # BELOW ARE CORKBOARD AND ON_THE_SPOT RESOURCES
+
+  # resources :corkboards do
+  #   collection do
+  #     put :update_attribute_on_the_spot
+  #   end
+  # end
+  
+  # collection do
+  #   put :update_attribute_on_the_spot
+  # end
   
   # The priority is based upon order of creation:
   # first created -> highest priority.

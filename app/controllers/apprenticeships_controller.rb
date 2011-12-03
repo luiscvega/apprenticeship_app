@@ -5,6 +5,7 @@ class ApprenticeshipsController < ApplicationController
   
   def index
     @apprenticeships = current_user.apprenticeships
+
   end
   
   def show
@@ -27,6 +28,10 @@ class ApprenticeshipsController < ApplicationController
         message.notification.destroy
       end
     end
+    
+    @meetups = current_apprenticeship.meetups.all
+    @meetup = Meetup.new
+    
   end
   
   def new
@@ -34,7 +39,6 @@ class ApprenticeshipsController < ApplicationController
     @available_mentors = @available_mentors.where(["id <> ?", current_user.id]) # REMOVE CURRENT USER
     @available_mentors = @available_mentors.where(["id NOT IN (?)", current_user.apprenticeships.map {|u| u.student.id }]) if current_user.apprenticeships.any?
     @available_mentors = @available_mentors.where(["id NOT IN (?)", current_user.apprenticeships.map {|u| u.mentor.id }]) if current_user.apprenticeships.any?
-  
     @available_mentors = @available_mentors.order("first_name ASC").page(params[:page]).per(10)
     
   end

@@ -14,5 +14,6 @@ class MessagesController < ApplicationController
     else
       redirect_to apprenticeship_url(current_apprenticeship)
     end
+    
   end
 end

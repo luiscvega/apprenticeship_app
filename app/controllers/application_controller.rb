@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
   end
   
   def current_apprenticeship
-    Apprenticeship.find_by_id(params[:id]) || Apprenticeship.find_by_id(params[:apprenticeship_id])
+    Apprenticeship.find_by_id(params[:apprenticeship_id]) || Apprenticeship.find_by_id(params[:id])
   end
   
   def require_user

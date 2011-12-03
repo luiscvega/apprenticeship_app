@@ -4,6 +4,10 @@ class MeetupsController < ApplicationController
     @meetup = Meetup.new
   end
   
+  def new
+    @meetup = Meetup.new
+  end
+  
   def create
     @meetup = current_apprenticeship.meetups.create(params[:meetup])
     
@@ -22,9 +26,9 @@ class MeetupsController < ApplicationController
     @meetup = Meetup.find(params[:id])
     @meetup.update_attributes(params[:meetup])
     if @meetup.save
-      redirect_to apprenticeship_meetups_url, :notice => "Hooray! You've edited a meetup!"
+      redirect_to apprenticeship_meetups_url(current_apprenticeship), :notice => "Hooray! You've edited a meetup!"
     else
-      redirect_to apprenticeship_meetups_url, :notice => "Hmm, your meetup wasn't edited."
+      redirect_to apprenticeship_meetups_url(current_apprenticeship), :notice => "Hmm, your meetup wasn't edited."
     end
   end
 
@@ -32,4 +36,6 @@ class MeetupsController < ApplicationController
     Meetup.find(params[:id]).destroy
     redirect_to apprenticeship_meetups_url, :notice => "Meetup was deleted! Kaboom!" 
   end
+  
+
 end

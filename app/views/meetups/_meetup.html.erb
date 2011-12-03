@@ -3,6 +3,6 @@
   <td><%= meetup.date %></td>
   <td><%= meetup.time.localtime.strftime("%I:%m %p") %></td>
   <td><%= meetup.description %></td>
-  <td><%= link_to "Edit", edit_apprenticeship_meetup_url(params[:apprenticeship_id], meetup) %></td>
-  <td><%= link_to "Delete", apprenticeship_meetup_url(params[:apprenticeship_id], meetup), :method => :delete %></td>
+  <td><%= link_to "Edit", edit_apprenticeship_meetup_url(current_apprenticeship, meetup) %></td>
+  <td><%= link_to "Delete", apprenticeship_meetup_url(current_apprenticeship, meetup), :method => :delete %></td>
 </tr>

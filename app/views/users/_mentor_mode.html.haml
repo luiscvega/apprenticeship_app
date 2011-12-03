@@ -1,6 +1,5 @@
 %h3
   Your Mentor Mode is currently turned:
-  %strong= link_to current_user.mentor ? "ON" : "OFF" , toggle_url, remote: true, id: "switch"
-  (click to switch)*
+  %strong= link_to current_user.mentor ? "ON" : "OFF" , toggle_url, remote: true, class: "switch"
 %p
   %em *(If turned on, you are open to new users adding you as their mentor)

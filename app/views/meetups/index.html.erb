@@ -17,28 +17,4 @@
   </tr>
   <%= render @meetups %>
 </table>
-<hr />
-<h3>Add A Meetup</h3>
-<%= form_for @meetup, :url => apprenticeship_meetups_url do |f|%>
-  <div class="field">
-    <%= f.label :venue %>
-    <%= f.text_field :venue %>
-  </div>
-  <div class="field">
-    <%= f.label :date %>
-    <%= f.date_select :date %>
-  </div>
-  <div class="field">
-    <%= f.label :time %>
-    <%= f.time_select :time %>
-  </div>
-  <div class="field">
-    <%= f.label :description %><br />
-    <%= f.text_area :description, :rows => 2 %>
-  </div>
-  <div class="action">
-    <%= f.submit "Send" %>
-  </div>
-<% end %>
-<br />
-<p><%= link_to "Return to Apprenticeship", apprenticeship_url(current_apprenticeship) %></p>
+<%= link_to "Add A Meetup", new_apprenticeship_meetup_url(current_apprenticeship) %>

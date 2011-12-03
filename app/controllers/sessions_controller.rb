@@ -1,6 +1,8 @@
 class SessionsController < ApplicationController
-  skip_before_filter :require_user
 
+  before_filter       :default_page, :only => :new
+  skip_before_filter  :require_user
+  
   def new
   end
   
@@ -29,4 +31,5 @@ class SessionsController < ApplicationController
   def default_page
     redirect_to apprenticeships_url if logged_in?
   end
+
 end
