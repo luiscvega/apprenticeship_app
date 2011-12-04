@@ -33,7 +33,13 @@
         %td.table_center
           = link_to "Meetups", apprenticeship_meetups_url(apprenticeship)
 - else
+
   %h3{:style => "text-align: center;"}
     You currently have no apprenticeships. 
     = link_to "Add an apprenticeship!", new_apprenticeship_url
-%p= link_to "+ Add Apprenticeship", new_apprenticeship_url
+    
+%p= link_to "Add A New Apprenticeship", new_apprenticeship_url, class: "button", style: "width: 100%;"
+
+
+
+

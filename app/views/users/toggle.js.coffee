@@ -1,4 +1,4 @@
-if $("a.switch").text() is "OFF"
-  $("a.switch").text "ON"
+if $("a.button").text() is "OFF"
+  $("a.button").text "ON"
 else
-  $("a.switch").text "OFF"
+  $("a.button").text "OFF"

@@ -14,18 +14,11 @@ class ApprenticeshipsController < ApplicationController
   end
   
   def new
-    @available_mentors = User.where(:mentor => true) # ADD USERS WHOSE MENTOR MODE IS ON
-    @available_mentors = @available_mentors.where(["id <> ?", current_user.id]) # REMOVE CURRENT USER
-    @available_mentors = @available_mentors.where(["id NOT IN (?)", current_user.apprenticeships.map {|u| u.student.id }]) if current_user.apprenticeships.any?
-    @available_mentors = @available_mentors.where(["id NOT IN (?)", current_user.apprenticeships.map {|u| u.mentor.id }]) if current_user.apprenticeships.any?
-    @available_mentors = @available_mentors.order("first_name ASC").page(params[:page]).per(10)
-    
+    @available_mentors = User.scoped.available_mentors(current_user).order("first_name ASC").page(params[:page]).per(10)
   end
   
   def create
-    @apprenticeship = Apprenticeship.new
-    @apprenticeship.student = current_user
-    @apprenticeship.mentor = User.find(params[:id])
+    @apprenticeship = Apprenticeship.new(student: current_user, mentor: User.find(params[:id]))
 
     if @apprenticeship.save
       redirect_to apprenticeship_url(@apprenticeship), :notice => "Apprenticeship created!"

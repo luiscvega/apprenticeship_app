@@ -16,6 +16,13 @@ class User < ActiveRecord::Base
            
   validates_presence_of :email, :first_name, :last_name, :description
   validates_uniqueness_of :email
+  
+  scope :available_mentors, lambda { |current_user| 
+      where("mentor = ?", true).
+      where("id <> ?", current_user.id).
+      where(["id NOT IN (?)", current_user.apprenticeships.map {|u| u.student.id }]).
+      where(["id NOT IN (?)", current_user.apprenticeships.map {|u| u.mentor.id }])
+    }
            
   def apprenticeships
     self.mentorships + self.studentships
@@ -27,11 +34,9 @@ class User < ActiveRecord::Base
   
   def toggle
     if self.mentor == true
-      self.mentor = false
-      self.save
+      update_attributes(mentor: false)
     else
-      self.mentor = true
-      self.save
+      update_attributes(mentor: true)
     end
   end
 
