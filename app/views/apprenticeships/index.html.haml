@@ -1,22 +1,17 @@
 - if @apprenticeships.any? 
   %table
     %tr
-      %th.table_center
       %th.table_center Student
       %th.table_center Mentor
       %th
       %th
-    %tr
+      %th
+
     - @apprenticeships.each do |apprenticeship|
       - student = apprenticeship.student ; mentor = apprenticeship.mentor
       %tr
-        %td.table_center
-          - message_notifications = apprenticeship.messages.select do |message|
-            - if message.notification
-              - message.notification.creator != current_user
-        
-          = link_to "See Apprenticeship #{"(#{message_notifications.count})" unless message_notifications.count == 0 }", apprenticeship_url(apprenticeship)
 
+          
         %td.table_center
           - if current_user == student
             %strong You
@@ -27,17 +22,26 @@
             %strong You
           - else
             = mentor.full_name
-        %td.table_center        
+            
+        %td.table_center
+          - message_notifications = apprenticeship.messages.select do |message|
+            - if message.notification
+              - message.notification.creator != current_user
+
+          = link_to "Messages #{"(#{message_notifications.count})" unless message_notifications.count == 0 }", apprenticeship_url(apprenticeship)
+
+        %td.table_center
           - meetup_notifications = apprenticeship.meetups.select do |meetup|
             - if meetup.notification
               - meetup.notification.creator != current_user
           = link_to "Meetups #{"(#{meetup_notifications.count})" unless meetup_notifications.count == 0 }", apprenticeship_meetups_url(apprenticeship)
-          
+
         %td.table_center
           - resource_notifications = apprenticeship.resources.select do |resource|
             - if resource.notification
               - resource.notification.creator != current_user
           = link_to "Resources #{"(#{resource_notifications.count})" unless resource_notifications.count == 0 }", apprenticeship_resources_url(apprenticeship)
+        
 - else
 
   %h3{:style => "text-align: center;"}
