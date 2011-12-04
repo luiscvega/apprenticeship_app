@@ -1,6 +1,7 @@
 class MeetupsController < ApplicationController
   def index
     @meetups = current_apprenticeship.meetups.all
+    destroy_notifications(@meetups)
     @meetup = Meetup.new
   end
   
@@ -9,7 +10,8 @@ class MeetupsController < ApplicationController
   end
   
   def create
-    @meetup = current_apprenticeship.meetups.create(params[:meetup])
+    @meetup = current_apprenticeship.meetups.build(params[:meetup])
+    @meetup.user = current_user
     
     if @meetup.save
       redirect_to apprenticeship_meetups_url, :notice => "Hooray! You've added a meetup!"

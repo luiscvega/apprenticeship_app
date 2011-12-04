@@ -6,14 +6,11 @@ class Message < ActiveRecord::Base
   
   belongs_to :apprenticeship
   
-  has_one :notification
+  has_one :notification, as: :notifiable
   
   belongs_to :user
   
   def notify
-    notification = self.build_notification
-    notification.apprenticeship = self.apprenticeship
-    notification.save
+    notification = self.create_notification(apprenticeship: self.apprenticeship)
   end
-
 end

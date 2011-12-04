@@ -1,9 +1,9 @@
 class Notification < ActiveRecord::Base
   belongs_to :apprenticeship
   
-  belongs_to :message
+  belongs_to :notifiable, polymorphic: true
   
   def creator
-    message.user || meetup.user || resource.user
+    self.notifiable.user
   end
 end

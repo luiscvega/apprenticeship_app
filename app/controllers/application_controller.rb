@@ -21,7 +21,7 @@ class ApplicationController < ActionController::Base
     redirect_to signin_url, notice: "Hmm, can you try signing in? That should probably work." unless logged_in?
   end
   
-  def destroy_notification(collection)
+  def destroy_notifications(collection)
     collection.each do |message|
       message.notification.destroy if !message.notification.nil? && message.notification.creator != current_user
     end

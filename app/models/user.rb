@@ -3,16 +3,10 @@ class User < ActiveRecord::Base
   has_secure_password
   
   has_many :messages
-  
+  has_many :meetups  
   has_many :resources
-  
-  has_many :mentorships,
-           :class_name => "Apprenticeship",
-           :foreign_key => "mentor_id"
-
-  has_many :studentships,
-           :class_name => "Apprenticeship",
-           :foreign_key => "student_id"
+  has_many :mentorships, :class_name => "Apprenticeship", :foreign_key => "mentor_id"
+  has_many :studentships, :class_name => "Apprenticeship", :foreign_key => "student_id"
            
   validates_presence_of :email, :first_name, :last_name, :description
   validates_uniqueness_of :email

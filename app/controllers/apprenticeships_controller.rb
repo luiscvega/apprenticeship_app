@@ -9,7 +9,7 @@ class ApprenticeshipsController < ApplicationController
   
   def show
     @messages = current_apprenticeship.messages.order(:created_at).page(params[:page]).per(13)
-    destroy_notification(@messages)
+    destroy_notifications(@messages)
     @message = Message.new  
   end
   

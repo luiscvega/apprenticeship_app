@@ -2,6 +2,7 @@ class ResourcesController < ApplicationController
 
   def index
     @resources = current_apprenticeship.resources.all
+    destroy_notifications(@resources)
     @resource = Resource.new
   end
   

@@ -33,7 +33,7 @@ describe User do
       @student.apprenticeships.should include(@apprenticeship)
     end
   end
-
+  
   describe "message associations" do
     before(:each) do
       @message = {:text => "I'm a message!"}
@@ -42,6 +42,17 @@ describe User do
     it "should have a messages attribute to create a message with the correct user" do
       @student_message = @student.messages.create(@message)
       @student.messages.should include(@student_message)
+    end
+  end
+
+  describe "meetup associations" do
+    before(:each) do
+      @meetup = {:venue => "I'm a meetup!"}
+    end
+    
+    it "should have a meetup attribute to create a message with the correct user" do
+      @student_meetup = @student.meetups.create(@meetup)
+      @student.meetups.should include(@student_meetup)
     end
   end
   
