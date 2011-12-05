@@ -16,7 +16,6 @@ class UsersController < ApplicationController
       UserMailer.send_confirmation(@user).deliver
       
       redirect_to apprenticeships_url
-      
     else
       redirect_to signup_url, notice: "There seems to have been a problem. Can you try again? Thanks!"
     end
@@ -34,7 +33,7 @@ class UsersController < ApplicationController
       session[:user_id] = @user.id
       redirect_to apprenticeships_url, notice: "Great! Your settings have been changed"
     else
-      redirect_to signup_url, notice: "There seems to have been a problem. Can you try again? Thanks!"
+      redirect_to edit_user_url, notice: "There seems to have been a problem. Can you try again? Thanks!"
     end
   end
   

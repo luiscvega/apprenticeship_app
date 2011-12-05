@@ -4,7 +4,7 @@ describe Message do
 
   before(:each) do
     @student = User.create(:first_name => "Luis", :last_name => "Vega", :email => "luis@luis.com", :password => "luis", :password_confirmation => "luis", :description => "I'm Luis!")
-    @mentor = User.create(:first_name => "Fred", :last_name => "Lee", :email => "fred@fred.com", :password => "miguel", :password_confirmation => "fred", :description => "I'm Fred!")
+    @mentor = User.create(:first_name => "Fred", :last_name => "Lee", :email => "fred@fred.com", :password => "fred", :password_confirmation => "fred", :description => "I'm Fred!")
     @apprenticeship = Apprenticeship.create(:mentor_id => @mentor.id, :student_id => @student.id)
   end
 
@@ -23,11 +23,8 @@ describe Message do
   
   describe "user associations" do
 
-    before(:each) do
-      @message = @student.messages.create(:text => "I'm a message!")
-    end
-
     it "should have user attribute indicating which 'user' it belongs to" do
+      @message = @student.messages.create(:text => "I'm a message!")
       @message.should respond_to(:user)
       @message.user.should == @student
     end
@@ -49,6 +46,13 @@ describe Message do
 
   end
   
-    
+  # describe "specific methods" do 
+  #   it "should have a notification_count method indicating how many message notifications a specific apprenticeship's has" do
+  #     @m1 = @apprenticeship.messages.create(text: "Message 1", user: @student)
+  #     @m2 = @apprenticeship.messages.create(text: "Message 2", user: @student)
+  #     @apprenticeship.messages.notification_count.should respond_to(:notification_count)
+  #     @apprenticeship.messages.notification_count.should == 2
+  #   end
+  # end
 
 end

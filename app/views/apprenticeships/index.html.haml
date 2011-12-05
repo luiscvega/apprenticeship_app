@@ -24,22 +24,15 @@
             = mentor.full_name
             
         %td.table_center
-          - message_notifications = apprenticeship.messages.select do |message|
-            - if message.notification
-              - message.notification.creator != current_user
-
+          - message_notifications = apprenticeship.messages.select { |message| message.notification.creator != current_user if message.notification }
           = link_to "Messages #{"(#{message_notifications.count})" unless message_notifications.count == 0 }", apprenticeship_url(apprenticeship)
 
         %td.table_center
-          - meetup_notifications = apprenticeship.meetups.select do |meetup|
-            - if meetup.notification
-              - meetup.notification.creator != current_user
+          - meetup_notifications = apprenticeship.meetups.select { |meetup| meetup.notification.creator != current_user if meetup.notification }
           = link_to "Meetups #{"(#{meetup_notifications.count})" unless meetup_notifications.count == 0 }", apprenticeship_meetups_url(apprenticeship)
 
         %td.table_center
-          - resource_notifications = apprenticeship.resources.select do |resource|
-            - if resource.notification
-              - resource.notification.creator != current_user
+          - resource_notifications = apprenticeship.resources.select { |resource| resource.notification.creator != current_user if resource.notification }
           = link_to "Resources #{"(#{resource_notifications.count})" unless resource_notifications.count == 0 }", apprenticeship_resources_url(apprenticeship)
         
 - else
