@@ -30,9 +30,5 @@ class User < ActiveRecord::Base
   def toggle
     mentor ? update_attributes(mentor: false) : update_attributes(mentor: true) #if mentor mode is true, switch to false, and vice versa
   end
-  
-  def unread_messages
-    Message.where(recipient_id: id, notification: )
-  end
 
 end
