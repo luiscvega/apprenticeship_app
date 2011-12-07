@@ -4,12 +4,13 @@
 %h3
   / = link_to "Messages", apprenticeship_messages_url(current_apprenticeship), id: "messages_link", remote: true
   / |
-  = link_to "Meetups", apprenticeship_meetups_url(current_apprenticeship)
+  = link_to "Meetups", apprenticeship_meetups_url(current_apprenticeship), remote: true
   |
-  = link_to "Resources", apprenticeship_resources_url(current_apprenticeship)
+  = link_to "Resources", apprenticeship_resources_url(current_apprenticeship), remote: true
 %hr
+#top_section
 #messages
-  %h3 Messages
+  %h1 Messages
   = render 'messages'
 
 / #corkboard

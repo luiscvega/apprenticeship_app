@@ -46,13 +46,22 @@ describe Message do
 
   end
   
-  # describe "specific methods" do 
-  #   it "should have a notification_count method indicating how many message notifications a specific apprenticeship's has" do
-  #     @m1 = @apprenticeship.messages.create(text: "Message 1", user: @student)
-  #     @m2 = @apprenticeship.messages.create(text: "Message 2", user: @student)
-  #     @apprenticeship.messages.notification_count.should respond_to(:notification_count)
-  #     @apprenticeship.messages.notification_count.should == 2
-  #   end
-  # end
+  describe "specific methods" do
+    before(:each) do
+      @message = @student.messages.create(:text => "I'm a message!")
+    end 
+
+    it "should have a recipient attribute indicating the intended user the message was for" do
+      @message.should respond_to(:recipient_id)
+      @message.recipient.should == @mentor
+    end
+    
+    # it "should have a notification_count method indicating how many message notifications a specific apprenticeship's has" do
+    #   @m1 = @apprenticeship.messages.create(text: "Message 1", user: @student)
+    #   @m2 = @apprenticeship.messages.create(text: "Message 2", user: @student)
+    #   @apprenticeship.messages.notification_count.should respond_to(:notification_count)
+    #   @apprenticeship.messages.notification_count.should == 2
+    # end
+  end
 
 end

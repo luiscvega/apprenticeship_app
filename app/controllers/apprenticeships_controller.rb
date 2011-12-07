@@ -9,12 +9,12 @@ class ApprenticeshipsController < ApplicationController
   
   def show
     @messages = current_apprenticeship.messages.order(:created_at).page(params[:page]).per(13)
-    destroy_notifications(@messages)
+    destroy_notifications(@messages) #Delete notifications once they've been read.
     @message = Message.new  
   end
   
   def new
-    @available_mentors = User.scoped.available_mentors(current_user).order("first_name ASC").page(params[:page]).per(10)
+    @available_mentors = User.scoped.available_mentors(current_user).order("first_name ASC").page(params[:page]).per(10) #Scope list of users to only available mentors. See user.rb for scope.
   end
   
   def create
@@ -25,6 +25,5 @@ class ApprenticeshipsController < ApplicationController
     else
       redirect_to new_apprenticeship_url, :notice => "Apprenticeship not established.."
     end
-    @apprenticeship.build_corkboard(notes: "This is your Corkboard! Click here to edit the text inside and create useful notes for your apprenticeship!").save
   end
 end

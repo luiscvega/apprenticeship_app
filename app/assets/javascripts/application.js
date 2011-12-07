@@ -10,8 +10,4 @@
 //= require on_the_spot
 
 $(function() {
-	// $('#messages_link').click(function(event) {
-	// 	event.preventDefault();
-	// 	$('#messages').slideToggle();	
-	// });
 });

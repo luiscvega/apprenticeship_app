@@ -1,11 +1,18 @@
-%h1 Account Settings
+%h1 Welcome #{current_user.full_name}!
 
 = render 'mentor_mode'
 
 %hr
 
-%p Full Name: #{current_user.full_name}
-%p Email: #{current_user.email}
-%p Description: #{current_user.description}
+%h2 Your New Messages
 
-= link_to "Edit Account", edit_user_url(current_user)
+- current_user.apprenticeships.each do |apprenticeship|
+  - apprenticeship.messages.each do |message|
+    %p= message.text if message.notification
+      
+      
+/ %p Full Name: #{current_user.full_name}
+/ %p Email: #{current_user.email}
+/ %p Description: #{current_user.description}
+/ 
+/ = link_to "Edit Account", edit_user_url(current_user)

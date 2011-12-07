@@ -26,8 +26,7 @@ class UsersController < ApplicationController
   end
   
   def update
-    @user = User.find(params[:id])
-    @user.update_attributes(params[:user])
+    @user = User.find(params[:id]).update_attributes(params[:user])
     
     if @user.save
       session[:user_id] = @user.id
@@ -38,7 +37,7 @@ class UsersController < ApplicationController
   end
   
   def toggle
-    current_user.toggle
+    current_user.toggle #toggle a user's mentor mode. See toggle method in user.rb.
     respond_to do |format|
       format.html { redirect_to :back }
       format.js   

@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
     current_user != nil
   end
   
-  def current_apprenticeship
+  def current_apprenticeship # Key method, show the current apprenticeship of the current user.
     Apprenticeship.find_by_id(params[:apprenticeship_id]) || Apprenticeship.find_by_id(params[:id])
   end
   

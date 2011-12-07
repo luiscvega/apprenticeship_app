@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
   has_many :messages
   has_many :meetups  
   has_many :resources
+  
   has_many :mentorships, :class_name => "Apprenticeship", :foreign_key => "mentor_id"
   has_many :studentships, :class_name => "Apprenticeship", :foreign_key => "student_id"
            
@@ -19,19 +20,19 @@ class User < ActiveRecord::Base
     }
            
   def apprenticeships
-    self.mentorships + self.studentships
+    mentorships + studentships
   end
   
   def full_name
-    self.first_name + " " + self.last_name
+    first_name + " " + last_name
   end
   
   def toggle
-    if self.mentor == true
-      update_attributes(mentor: false)
-    else
-      update_attributes(mentor: true)
-    end
+    mentor ? update_attributes(mentor: false) : update_attributes(mentor: true) #if mentor mode is true, switch to false, and vice versa
+  end
+  
+  def unread_messages
+    Message.where(recipient_id: id, notification: )
   end
 
 end

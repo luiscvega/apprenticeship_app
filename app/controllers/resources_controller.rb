@@ -4,6 +4,11 @@ class ResourcesController < ApplicationController
     @resources = current_apprenticeship.resources.all
     destroy_notifications(@resources)
     @resource = Resource.new
+    
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
   
   def new
@@ -11,7 +16,7 @@ class ResourcesController < ApplicationController
   end
   
   def create
-    @resource = current_apprenticeship.resources.create(params[:resource])
+    @resource = current_apprenticeship.resources.build(params[:resource])
     @resource.user = current_user
     
     if @resource.save

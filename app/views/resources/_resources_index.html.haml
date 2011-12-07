@@ -1,0 +1,29 @@
+%p
+  = link_to "Apprenticeships", apprenticeships_url
+  >
+  \#{link_to "Current Apprenticeship", apprenticeship_url(current_apprenticeship)} >
+  Resources
+%h1 Resources
+%table
+  %tr
+    %th Link
+    %th
+    %th Description
+    %th
+    %th
+  = render @resources
+%hr/
+= form_for @resource, :url => apprenticeship_resources_url do |f|
+  .field
+    = f.label :link, "Link: "
+    = f.text_field :link, :placeholder => "http://codeacademy.org"
+    %em (kindly include "http://")
+  .field
+    = f.label :title, "Title: "
+    = f.text_field :title, :placeholder => "Code Academy Website"
+  .field
+    = f.label :description, "Description: "
+    = f.text_field :description, :style => "width: 400px;", :placeholder => "Write something here..."
+  .action
+    = f.submit "Add Resource"
+%br/

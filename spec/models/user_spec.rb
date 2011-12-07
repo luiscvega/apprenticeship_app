@@ -72,5 +72,8 @@ describe User do
       @student.should respond_to(:full_name)
       @student.full_name.should == "Luis Vega"
     end
+    
+    # it "should have a unread_messages attribute displaying the user's unread messages" do
+    # end
   end
 end

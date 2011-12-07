@@ -1,8 +1,13 @@
 class MeetupsController < ApplicationController
+  
   def index
     @meetups = current_apprenticeship.meetups.all
     destroy_notifications(@meetups)
     @meetup = Meetup.new
+    respond_to do |format|
+      format.js
+      format.html
+    end
   end
   
   def new
