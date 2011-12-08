@@ -6,8 +6,9 @@ class MessagesController < ApplicationController
   end
   
   def create
-    @message = current_apprenticeship.messages.new(params[:message])
-    @message.user = current_user
+    @message = current_apprenticeship.messages.build(params[:message])
+    @message.sender = current_user
+    @message.recipient = other_user
     
     if @message.save
       redirect_to apprenticeship_url(current_apprenticeship)

@@ -6,10 +6,8 @@
 
 %h2 Your New Messages
 
-- current_user.apprenticeships.each do |apprenticeship|
-  - apprenticeship.messages.each do |message|
-    %p= message.text if message.notification
-      
+- current_user.unread_messages.each do |message|
+  %p= "#{message.sender.full_name} says '#{message.text}'"     
       
 / %p Full Name: #{current_user.full_name}
 / %p Email: #{current_user.email}

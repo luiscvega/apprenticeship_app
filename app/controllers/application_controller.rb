@@ -26,4 +26,9 @@ class ApplicationController < ActionController::Base
       message.notification.destroy if !message.notification.nil? && message.notification.creator != current_user
     end
   end
+
+  def other_user
+    current_user == current_apprenticeship.student ? current_apprenticeship.mentor : current_apprenticeship.student
+  end
+
 end

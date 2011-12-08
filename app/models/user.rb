@@ -31,4 +31,20 @@ class User < ActiveRecord::Base
     mentor ? update_attributes(mentor: false) : update_attributes(mentor: true) #if mentor mode is true, switch to false, and vice versa
   end
 
+  def unread_messages
+    Message.joins(:notification).where(recipient_id: self.id)
+  end
+
+  def unread_meetups 
+    Meetup.joins(:notification).where(recipient_id: self.id)
+  end
+
+  def unread_resources
+    Resource.joins(:notification).where(recipient_id: self.id)
+  end
+
+
+
+
 end
+
