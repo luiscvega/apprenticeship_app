@@ -19,7 +19,8 @@ end
 
 I count the messages using this method:
 
-<pre><code># In the Controller  
+```
+# In the Controller  
   
 def unread_messages
   Message.joins(:notification).where(recipient_id: self.id)
@@ -27,11 +28,13 @@ end
 
 # In the View (Note: Index page view list each apprenticeships, so I have to scope further and indicate which apprenticeship exactly)
 
-= link_to "Messages #{"(#{current_user.unread_messages.where(apprenticeship_id: apprenticeship.id).count})" unless current_user.unread_messages.where(apprenticeship_id: apprenticeship.id).count == 0 }", apprenticeship_url(apprenticeship)</code></pre>
+= link_to "Messages #{"(#{current_user.unread_messages.where(apprenticeship_id: apprenticeship.id).count})" unless current_user.unread_messages.where(apprenticeship_id: apprenticeship.id).count == 0 }", apprenticeship_url(apprenticeship)
+```
 
 I then delete the notifications when the user goes into the show page of the apprenticeship (where the messages are listed)
 
-<pre><code># In the Application Controller (I placed in this in the Application Controller since use this method to delete other notification collections other than messages, such as meetups and resources).
+```
+# In the Application Controller (I placed in this in the Application Controller since use this method to delete other notification collections other than messages, such as meetups and resources).
 
 def destroy_notifications(collection)
   collection.each do |message|
@@ -42,10 +45,12 @@ end
 # In Apprenticeships controller, Index action
 
 @messages = current_apprenticeship.messages.order(:created_at).page(params[:page]).per(13)
-destroy_notifications(@messages)</code></pre>
+destroy_notifications(@messages)
+```
 
 ## The Seed File
-<pre><code>apprenticeships = {
+```
+apprenticeships = {
     "Luis Vega"       => "Fred Lee",
     "Alex Bartling"   => "Aaron Kalin",
     "Charles Jackson" => "Ray Hightower",
