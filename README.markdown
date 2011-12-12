@@ -9,11 +9,13 @@ If User A doesn't want to be in a list of available mentors (hence not allowing 
 
 The notification system is where a Student A will send a message to Mentor B, and Mentor B will see an indicator that he has received a new message. It's similar to Facebook's Notification system, where if you have 3 new messages, it will show the total number of new messages. In the case of my application, it will show "Messages (3)". I do this by creating a new table called "Notification", where a message has_one notification. When a message is created, a callback function is called and creates a new notification for that message in the Notification table
 
-<pre><code>after_save :notify
+```
+after_save :notify
 
 def notify
   notification = self.create_notification(apprenticeship: self.apprenticeship)
-end</code></pre>
+end
+```
 
 I count the messages using this method:
 
@@ -42,9 +44,8 @@ end
 @messages = current_apprenticeship.messages.order(:created_at).page(params[:page]).per(13)
 destroy_notifications(@messages)</code></pre>
 
-# The Seed File
-<pre><code>
-  apprenticeships = {
+## The Seed File
+<pre><code>apprenticeships = {
     "Luis Vega"       => "Fred Lee",
     "Alex Bartling"   => "Aaron Kalin",
     "Charles Jackson" => "Ray Hightower",
@@ -69,7 +70,7 @@ destroy_notifications(@messages)</code></pre>
   everyone.each { |name| create_users.call name }
 
   i = 0
-  while (i < apprenticeships.count)
+  while (i \< apprenticeships.count)
     apprenticeship = Apprenticeship.new
     apprenticeship.student = User.find_by_first_name(students[i].split.first) && User.find_by_last_name(students[i].split.last)
     apprenticeship.mentor = User.find_by_first_name(mentors[i].split.first) && User.find_by_last_name(mentors[i].split.last)
