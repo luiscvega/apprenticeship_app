@@ -82,26 +82,50 @@ apprenticeships = {
     apprenticeship.save
     i+=1
   end
-</code></pre>
+```
+
+## Polymorphism
+
+Since I have a table for Messages, Meetups and Resources (and probably more tables later on), I decided implement Polymorphism for the Notifications Table, since they all will have a "has_one :notification" association. Hence, the notification model is as follows: 
+
+```
+class Notification < ActiveRecord::Base
+  belongs_to :apprenticeship
+  
+  belongs_to :notifiable, polymorphic: true
+  
+  def creator
+    self.notifiable.user
+  end
+end
+
+#Schema
+
+Notification(id: integer, apprenticeship_id: ... notifiable_id: integer, notifiable_type: string) 
+```
+
 
 ## Other interesting code:
 
 Scoping 'Available Mentors' from Users
-
-<pre><code>scope :available_mentors, lambda { |current_user| 
+```scope :available_mentors, lambda { |current_user| 
     where("mentor = ?", true).
     where("id <> ?", current_user.id).
     where(["id NOT IN (?)", current_user.apprenticeships.map {|u| u.student.id }]).
     where(["id NOT IN (?)", current_user.apprenticeships.map {|u| u.mentor.id }])
-  }</code></pre>
+  }
+```
 
-<pre><code>def current_apprenticeship # Key method, show the current apprenticeship of the current user.
+Find the Current User or Current User's Apprenticeship
+```
+def current_apprenticeship # Key method, show the current apprenticeship of the current user.
    Apprenticeship.find_by_id(params[:apprenticeship_id]) || Apprenticeship.find_by_id(params[:id])
- end</code></pre>
+ end
+```
 
-<pre><code>
-  
-</code></pre>
-
-<pre><code>
-</code></pre>
+Find the other user the current apprenticeship
+```
+def other_user
+  current_user == current_apprenticeship.student ? current_apprenticeship.mentor : current_apprenticeship.student
+end
+```
