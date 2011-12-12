@@ -107,7 +107,8 @@ Notification(id: integer, apprenticeship_id: ... notifiable_id: integer, notifia
 
 ## Other interesting code:
 
-Scoping 'Available Mentors' from Users
+Scoping Available Mentors from Users
+
 ```scope :available_mentors, lambda { |current_user| 
     where("mentor = ?", true).
     where("id <> ?", current_user.id).
@@ -117,6 +118,7 @@ Scoping 'Available Mentors' from Users
 ```
 
 Find the Current User or Current User's Apprenticeship
+
 ```
 def current_apprenticeship # Key method, show the current apprenticeship of the current user.
    Apprenticeship.find_by_id(params[:apprenticeship_id]) || Apprenticeship.find_by_id(params[:id])
