@@ -49,6 +49,7 @@ destroy_notifications(@messages)
 ```
 
 ## The Seed File
+
 ```
 apprenticeships = {
     "Luis Vega"       => "Fred Lee",
@@ -109,7 +110,8 @@ Notification(id: integer, apprenticeship_id: ... notifiable_id: integer, notifia
 
 Scoping Available Mentors from Users
 
-```scope :available_mentors, lambda { |current_user| 
+```
+scope :available_mentors, lambda { |current_user| 
     where("mentor = ?", true).
     where("id <> ?", current_user.id).
     where(["id NOT IN (?)", current_user.apprenticeships.map {|u| u.student.id }]).
@@ -117,7 +119,7 @@ Scoping Available Mentors from Users
   }
 ```
 
-Find the Current User or Current User's Apprenticeship
+Find the Current User's Apprenticeship
 
 ```
 def current_apprenticeship # Key method, show the current apprenticeship of the current user.
@@ -125,7 +127,8 @@ def current_apprenticeship # Key method, show the current apprenticeship of the 
  end
 ```
 
-Find the other user the current apprenticeship
+Find the other user the Current Apprenticeship
+
 ```
 def other_user
   current_user == current_apprenticeship.student ? current_apprenticeship.mentor : current_apprenticeship.student
