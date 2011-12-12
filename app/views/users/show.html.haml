@@ -6,8 +6,17 @@
 
 %h2 Your New Messages
 
-- current_user.unread_messages.each do |message|
-  %p= "#{message.sender.full_name} says '#{message.text}'"     
+%table
+  - current_user.unread_messages.select("DISTINCT (user_id)").each do |message|
+    %tr
+      %td
+        = current_user.unread_messages.where(user_id: message.sender.id).count
+        from #{message.sender.full_name}
+/%table
+/ - current_user.unread_messages.each do |message|
+/  %tr
+/   %td= "#{current_user.unread_messages.where(user_id: message.sender.id).count} messages from #{message.sender.full_name}"
+      
       
 / %p Full Name: #{current_user.full_name}
 / %p Email: #{current_user.email}

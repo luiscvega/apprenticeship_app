@@ -40,4 +40,11 @@ describe Resource do
 
   end
   
+  describe "specific methods" do
+    it "should have a recipient attribute indicating the intended user the resource was for" do
+      @resource = @student.resources.create(link: "http://google.com", recipient: @mentor)
+      @resource.recipient.should == @mentor
+    end
+  end
+
 end

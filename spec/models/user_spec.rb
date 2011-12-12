@@ -11,7 +11,7 @@ describe User do
 
     before(:each) do
       @student2 = User.create(:first_name => "Abe", :last_name => "Lincoln", :email => "abe@abe.com", :password => "abe", :password_confirmation => "abe", :description => "I'm Abe!")
-      @mentor2 = User.create(:first_name => "Barack", :last_name => "Obama", :email => "barack@barack.com", :password => "barack", :password_confirmation => "barack", :description => "I'm Abe!")
+      @mentor2 = User.create(:first_name => "Barack", :last_name => "Obama", :email => "barack@barack.com", :password => "barack", :password_confirmation => "barack", :description => "I'm Barack!")
       @apprenticeship = Apprenticeship.create(:mentor_id => @mentor.id, :student_id => @student.id)
       @apprenticeship2 = Apprenticeship.create(:mentor_id => @mentor2.id, :student_id => @student2.id)
     end
@@ -73,7 +73,27 @@ describe User do
       @student.full_name.should == "Luis Vega"
     end
     
-    # it "should have a unread_messages attribute displaying the user's unread messages" do
-    # end
+  end
+
+  describe "unread methods" do
+
+    it "should have an unread_messages method indicating the user's unread messages" do
+      @message = @student.messages.create(text: "Message from student!", recipient: @mentor)
+      @mentor.should respond_to(:unread_messages)
+      @mentor.unread_messages.should include(@message)
+    end
+
+    it "should have an unread_meetups method indicating the user's unread meetups" do
+      @meetup = @student.meetups.create(venue: "Meetup from student!", recipient: @mentor)
+      @mentor.should respond_to(:unread_meetups)
+      @mentor.unread_meetups.should include(@meetup)
+    end
+
+    it "should have an unread_resources method indicating the user's unread resources" do
+      @resource = @student.resources.create(link: "http://google.com", recipient: @mentor)
+      @mentor.should respond_to(:unread_resources)
+      @mentor.unread_resources.should include(@resource)
+    end
   end
 end
+

@@ -40,4 +40,12 @@ describe Meetup do
     end
 
   end
+
+  describe "specific methods" do
+    it "should have a recipient attribute indicating the intended user the meetup was for" do
+      @meetup = @student.meetups.create(venue: "Groupon", recipient: @mentor)
+      @meetup.recipient.should == @mentor
+    end
+
+  end
 end

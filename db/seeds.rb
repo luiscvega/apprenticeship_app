@@ -20,7 +20,7 @@ apprenticeships = {
 
 students = apprenticeships.keys
 mentors = apprenticeships.values
-everyone = students + mentors # This line was just way too funny.
+everyone = students + mentors #Haha
 
 create_users = Proc.new do |name|
             first = name.split.first.downcase
@@ -41,6 +41,5 @@ while (i < apprenticeships.count)
   apprenticeship.student = User.find_by_first_name(students[i].split.first) && User.find_by_last_name(students[i].split.last)
   apprenticeship.mentor = User.find_by_first_name(mentors[i].split.first) && User.find_by_last_name(mentors[i].split.last)
   apprenticeship.save
-  apprenticeship.build_corkboard(notes: "Testing!").save
   i+=1
 end

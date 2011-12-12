@@ -53,6 +53,7 @@ describe Message do
 
     it "should have a recipient attribute indicating the intended user the message was for" do
       @message.should respond_to(:recipient_id)
+      @message.update_attributes(recipient: @mentor)
       @message.recipient.should == @mentor
     end
     

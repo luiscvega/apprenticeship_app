@@ -43,8 +43,5 @@ class User < ActiveRecord::Base
     Resource.joins(:notification).where(recipient_id: self.id)
   end
 
-
-
-
 end
 

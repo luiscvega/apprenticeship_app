@@ -1,4 +1,8 @@
 %p
+  You are the
+  = current_mentor? ? "Mentor" : "Student"
+
+%p
   = link_to "Apprenticeships", apprenticeships_url
   > Current Apprenticeship
 %h3

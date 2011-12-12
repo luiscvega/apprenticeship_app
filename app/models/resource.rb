@@ -4,6 +4,8 @@ class Resource < ActiveRecord::Base
   has_one :notification, as: :notifiable
   
   after_save :notify
+
+  belongs_to :recipient, class_name: "User", foreign_key: "recipient_id"
   
   def notify
     notification = self.create_notification(apprenticeship: self.apprenticeship)

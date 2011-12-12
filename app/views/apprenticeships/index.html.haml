@@ -8,41 +8,31 @@
       %th
 
     - @apprenticeships.each do |apprenticeship|
-      - student = apprenticeship.student ; mentor = apprenticeship.mentor
       %tr
-
           
         %td.table_center
-          - if current_user == student
+          - if current_user == apprenticeship.student
             %strong You
           - else
-            = student.full_name
+            = apprenticeship.student.full_name
         %td.table_center
-          - if current_user == mentor
+          - if current_user == apprenticeship.mentor
             %strong You
           - else
-            = mentor.full_name
+            = apprenticeship.mentor.full_name
             
         %td.table_center
-          - message_notifications = apprenticeship.messages.select { |message| message.notification.creator != current_user if message.notification }
-          = link_to "Messages #{"(#{message_notifications.count})" unless message_notifications.count == 0 }", apprenticeship_url(apprenticeship)
+          = link_to "Messages #{"(#{current_user.unread_messages.where(apprenticeship_id: apprenticeship.id).count})" unless current_user.unread_messages.where(apprenticeship_id: apprenticeship.id).count == 0 }", apprenticeship_url(apprenticeship)
 
         %td.table_center
-          - meetup_notifications = apprenticeship.meetups.select { |meetup| meetup.notification.creator != current_user if meetup.notification }
-          = link_to "Meetups #{"(#{meetup_notifications.count})" unless meetup_notifications.count == 0 }", apprenticeship_meetups_url(apprenticeship)
+          = link_to "Meetups #{"(#{current_user.unread_meetups.where(apprenticeship_id: apprenticeship.id).count})" unless current_user.unread_meetups.where(apprenticeship_id: apprenticeship.id).count == 0 }", apprenticeship_meetups_url(apprenticeship)
 
         %td.table_center
-          - resource_notifications = apprenticeship.resources.select { |resource| resource.notification.creator != current_user if resource.notification }
-          = link_to "Resources #{"(#{resource_notifications.count})" unless resource_notifications.count == 0 }", apprenticeship_resources_url(apprenticeship)
+          = link_to "Resources #{"(#{current_user.unread_resources.where(apprenticeship_id: apprenticeship.id).count})" unless current_user.unread_resources.where(apprenticeship_id: apprenticeship.id).count == 0 }", apprenticeship_resources_url(apprenticeship)
         
 - else
 
   %h3{:style => "text-align: center;"}
-    You currently have no apprenticeships. 
-    = link_to "Add an apprenticeship!", new_apprenticeship_url
+    You currently have no apprenticeships. Why not add some? 
     
 %p= link_to "Add A New Apprenticeship", new_apprenticeship_url, class: "button", style: "width: 100%;"
-
-
-
-

@@ -10,4 +10,13 @@ module ApplicationHelper
     end
   end
 
+  def current_mentor?
+    current_apprenticeship.mentor == current_user 
+  end
+
+  def current_student?
+    current_apprenticeship.student == current_user
+  end
+
+
 end
