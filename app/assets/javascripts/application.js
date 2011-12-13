@@ -9,5 +9,3 @@
 //= require_tree .
 //= require on_the_spot
 
-$(function() {
-});

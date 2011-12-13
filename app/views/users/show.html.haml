@@ -2,24 +2,21 @@
 
 = render 'mentor_mode'
 
-%hr
 
-%h2 Your New Messages
+- if current_user.unread_messages.any? 
 
-%table
-  - current_user.unread_messages.select("DISTINCT (user_id)").each do |message|
-    %tr
-      %td
-        = current_user.unread_messages.where(user_id: message.sender.id).count
-        from #{message.sender.full_name}
-/%table
-/ - current_user.unread_messages.each do |message|
-/  %tr
-/   %td= "#{current_user.unread_messages.where(user_id: message.sender.id).count} messages from #{message.sender.full_name}"
-      
-      
-/ %p Full Name: #{current_user.full_name}
-/ %p Email: #{current_user.email}
-/ %p Description: #{current_user.description}
-/ 
-/ = link_to "Edit Account", edit_user_url(current_user)
+  %h2 Your New Messages
+  %table
+    - current_user.unread_messages.find(:all, group: "apprenticeship_id").each do |message|
+      %tr
+        %td
+          - @new_message = message.apprenticeship
+          = link_to "#{pluralize(current_user.unread_messages.where(user_id: message.sender.id).count, 'message')} from #{message.sender.full_name}", apprenticeship_url(message.apprenticeship), id: dom_id(message.apprenticeship), remote: true
+
+  - if !current_user.apprenticeships.any?
+    %h3{:style => "text-align: center;"}
+      You currently have no apprenticeships. Why not add some? 
+    
+    %p= link_to "Add A New Apprenticeship", new_apprenticeship_url, class: "button", style: "width: 100%;"
+
+#top_section

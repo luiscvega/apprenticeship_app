@@ -9,8 +9,14 @@ class ApprenticeshipsController < ApplicationController
   
   def show
     @messages = current_apprenticeship.messages.order(:created_at).page(params[:page]).per(13)
-    destroy_notifications(@messages) #Delete notifications once they've been read.
-    @message = Message.new  
+
+    @message = Message.new
+    @unread_messages = current_user.unread_messages.where(apprenticeship_id: current_apprenticeship.id)
+
+    respond_to do |format|
+      format.js
+      format.html { destroy_notifications(@messages) }
+    end
   end
   
   def new
