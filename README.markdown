@@ -7,7 +7,7 @@ If User A doesn't want to be in a list of available mentors (hence not allowing 
 
 ## Notification System
 
-The notification system is where a Student A will send a message to Mentor B, and Mentor B will see an indicator that he has received a new message. It's similar to Facebook's Notification system, where if you have 3 new messages, it will show the total number of new messages. In the case of my application, it will show "Messages (3)". I do this by creating a new table called "Notification", where a message has_one notification. When a message is created, a callback function is called and creates a new notification for that message in the Notification table
+The notification system is where Student A will send a message to Mentor B, and Mentor B will see an indicator that he has received a new message. It's similar to Facebook's Notification system, where if you have 3 new messages, it will show the total number of new messages. In the case of my application, it will show "Messages (3)". I do this by creating a new table called "Notification", where a message has_one notification. When a message is created, a callback function is called and creates a new notification for that message in the Notification table
 
 ```
 after_save :notify
@@ -20,13 +20,13 @@ end
 I count the messages using this method:
 
 ```
-# In the Controller  
+# In the User Model  
   
 def unread_messages
   Message.joins(:notification).where(recipient_id: self.id)
 end
 
-# In the View (Note: Index page view list each apprenticeships, so I have to scope further and indicate which apprenticeship exactly)
+# In the View (Note: Index page view lists each apprenticeships, so I have to scope further and indicate which apprenticeship exactly)
 
 = link_to "Messages #{"(#{current_user.unread_messages.where(apprenticeship_id: apprenticeship.id).count})" unless current_user.unread_messages.where(apprenticeship_id: apprenticeship.id).count == 0 }", apprenticeship_url(apprenticeship)
 ```
@@ -49,6 +49,8 @@ destroy_notifications(@messages)
 ```
 
 ## The Seed File
+
+I play around with Blocks and Procs in the seed file since it's essentially ruby. I know I didn't have to create a proc but I wanted to experiment to play around with this tool.
 
 ```
 apprenticeships = {
@@ -87,7 +89,7 @@ apprenticeships = {
 
 ## Polymorphism
 
-Since I have a table for Messages, Meetups and Resources (and probably more tables later on), I decided implement Polymorphism for the Notifications Table, since they all will have a "has_one :notification" association. Hence, the notification model is as follows: 
+Since I have a table for Messages, Meetups and Resources (and probably more tables later on), I decided to implement Polymorphism for the Notifications Table, since they all will have a "has_one :notification" association. Hence, the notification model is as follows: 
 
 ```
 class Notification < ActiveRecord::Base
