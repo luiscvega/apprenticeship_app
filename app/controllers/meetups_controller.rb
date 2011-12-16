@@ -20,7 +20,7 @@ class MeetupsController < ApplicationController
     @meetup.recipient = other_user
     
     if @meetup.save
-      redirect_to apprenticeship_meetups_url, :notice => "Hooray! You've added a meetup!"
+      redirect_to user_url(current_user), :notice => "Hooray! You've added a meetup!"
     else
       redirect_to apprenticeship_meetups_url, :notice => "Hmm, your meetup wasn't added."
     end

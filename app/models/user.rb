@@ -13,10 +13,10 @@ class User < ActiveRecord::Base
   validates_uniqueness_of :email
   
   scope :available_mentors, lambda { |current_user| 
-      where("mentor = ?", true).
-      where("id <> ?", current_user.id).
-      where(["id NOT IN (?)", current_user.apprenticeships.map {|u| u.student.id }]).
-      where(["id NOT IN (?)", current_user.apprenticeships.map {|u| u.mentor.id }])
+      where("mentor = ?", true).      #Mentor Mode must be ON
+      where("id <> ?", current_user.id).      # Doesn't include the current_user
+      where(["id NOT IN (?)", (current_user.apprenticeships.map {|a| a.student.id }.nil? ? []  : current_user.apprenticeships.map {|a| a.student.id }.nil? )]).
+      where(["id NOT IN (?)", (current_user.apprenticeships.map {|a| a.mentor.id }.nil? ? []  : current_user.apprenticeships.map {|a| a.mentor.id }.nil? )])
     }
            
   def apprenticeships

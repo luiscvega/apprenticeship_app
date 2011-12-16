@@ -9,3 +9,8 @@
 //= require_tree .
 //= require on_the_spot
 
+$(function() {
+	$('.hello').click(function() {
+		alert('Hello!');
+	});
+});

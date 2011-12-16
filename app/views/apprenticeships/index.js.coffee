@@ -1,0 +1,1 @@
+$('#apprenticeships_index').slideToggle();

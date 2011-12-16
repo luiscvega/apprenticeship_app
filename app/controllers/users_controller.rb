@@ -19,7 +19,7 @@ class UsersController < ApplicationController
       
       UserMailer.send_confirmation(@user).deliver
       
-      redirect_to apprenticeships_url
+      redirect_to @user
     else
       redirect_to signup_url, notice: "There seems to have been a problem. Can you try again? Thanks!"
     end
@@ -30,11 +30,11 @@ class UsersController < ApplicationController
   end
   
   def update
-    @user = User.find(params[:id]).update_attributes(params[:user])
+    @user = User.find(params[:id])
     
     if @user.save
       session[:user_id] = @user.id
-      redirect_to apprenticeships_url, notice: "Great! Your settings have been changed"
+      redirect_to account_url(current_user) , notice: "Great! Your settings have been changed"
     else
       redirect_to edit_user_url, notice: "There seems to have been a problem. Can you try again? Thanks!"
     end
@@ -47,6 +47,9 @@ class UsersController < ApplicationController
       format.js   
     end
       
+  end
+  
+  def account
   end
   
 end

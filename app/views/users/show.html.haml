@@ -1,9 +1,9 @@
 %h1 Welcome #{current_user.full_name}!
-
 = render 'mentor_mode'
 
 - if current_user.has_unread?
-  %h2 What's new?
+  %hr
+  %h3 What's new?
   %table
     - if current_user.unread_messages.any? 
       - current_user.unread_messages.find(:all, group: "apprenticeship_id").each do |message|
@@ -17,29 +17,40 @@
       - current_user.unread_resources.find(:all, group: "apprenticeship_id").each do |resource|
         %tr
           %td= link_to "#{pluralize(current_user.unread_resources.where(user_id: resource.sender.id).count, 'new resource')} from #{resource.sender.full_name}", apprenticeship_resources_url(resource.apprenticeship, apprenticeship_id: resource.apprenticeship.id)
-  
-%hr
 
-%studentships
+- if current_user.apprenticeships.any?
   - if current_user.mentorships.any?
-    %h1 Your Students
-    %table
-      - current_user.mentorships.each do |mentorship|
-        %tr
-          %td
-            = mentorship.student.full_name
-            = link_to "Check Apprenticeship", apprenticeship_url(mentorship)
+    %studentships
+      %hr
+      %h3 Your Students
+      %table
+        - current_user.mentorships.each do |mentorship|
+          %tr
+            %td
+              = mentorship.student.full_name
+              = link_to "Check Apprenticeship", apprenticeship_url(mentorship)
 
-%mentorships
-  %hr
   - if current_user.studentships.any?
-    %h1 Your Mentors
-    %table
-      - current_user.studentships.each do |studentship|
-        %tr
-          %td
-            = studentship.mentor.full_name
-            = link_to "Check Apprenticeship", apprenticeship_url(studentship)
+    %mentorships
+      %hr
+      %h3 Your Mentors
+      %table
+        - current_user.studentships.each do |studentship|
+          %tr
+            %td
+              = studentship.mentor.full_name
+              = link_to "Check Apprenticeship", apprenticeship_url(studentship)
+              
+  = link_to "Overview", apprenticeships_url, remote: true
+  #apprenticeships_index
+    %hr
+    %h2 Overview of Your Apprenticeships
+    = render 'apprenticeships/apprenticeships_index'
+- else
+  %h3{:style => "text-align: center;"}
+    You currently have no apprenticeships. Why not add some? 
+  
+  %p= link_to "Add A New Apprenticeship", new_apprenticeship_url, class: "button", style: "width: 100%;"
 
 / %h1 Your Apprenticeships
 / 

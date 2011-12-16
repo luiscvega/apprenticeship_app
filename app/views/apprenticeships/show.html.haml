@@ -1,9 +1,7 @@
 %p
-  You are the
-  = current_mentor? ? "Mentor" : "Student"
-
-%p
-  = link_to "Apprenticeships", apprenticeships_url
+  = link_to "Home", current_user
+  >
+  = link_to "Your Apprenticeships", apprenticeships_url
   > Current Apprenticeship
 %h3
   / = link_to "Messages", apprenticeship_messages_url(current_apprenticeship), id: "messages_link", remote: true

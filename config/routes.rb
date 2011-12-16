@@ -2,6 +2,8 @@ ApprenticeshipAppV2::Application.routes.draw do
 
   root :to => "sessions#new"
   match "signup" => "users#new"
+
+  get "users/account/:id", controller: :users, action: :account, as: :account
   
   get "users/new", as: :signup
   

@@ -5,6 +5,10 @@ class ApprenticeshipsController < ApplicationController
   
   def index
     @apprenticeships = current_user.apprenticeships
+    respond_to do |format|
+      format.js
+      format.html
+    end
   end
   
   def show
@@ -25,7 +29,7 @@ class ApprenticeshipsController < ApplicationController
   end
   
   def create
-    @apprenticeship = Apprenticeship.new(student: current_user, mentor: User.find(params[:id]))
+    @apprenticeship = Apprenticeship.new(student: current_user, mentor: User.find(params[:mentor_id]))
 
     if @apprenticeship.save
       redirect_to apprenticeship_url(@apprenticeship), :notice => "Apprenticeship created!"

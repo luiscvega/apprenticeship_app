@@ -24,9 +24,10 @@
           #right
             Welcome
             = succeed "!" do
-              %strong= current_user.full_name
+              %strong<
+                = link_to current_user.full_name, user_url(current_user)
             = link_to "Apprenticeships", apprenticeships_url
-            = link_to "Account Settings", user_url(current_user)
+            = link_to "Account Settings", account_url(current_user)
             = link_to "Sign Out", signout_url, :method => :delete
         - else
           #left
@@ -52,3 +53,4 @@
         = link_to "Blog", "http://hungryfoolishcrazyone.tumblr.com/"
         %br
         = link_to "See the code on Github!", "http://github.com/luiscvega/apprenticeship_app_v2"
+/ = link_to "Hello", "#", class: "hello"

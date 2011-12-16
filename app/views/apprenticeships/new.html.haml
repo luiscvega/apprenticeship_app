@@ -8,7 +8,8 @@
     %td Name
   - @available_mentors.each do |mentor|
     %tr
-      %td.table_column_left= link_to "Add Mentor", apprenticeships_url(:id => mentor.id), :method => :post
+      / %td.table_column_left= link_to "Add #{mentor.first_name} as My Mentor", apprenticeships_url(:mentor_id => mentor.id), :method => :post
+      %td.table_column_left= link_to "Add #{mentor.first_name} as My Mentor", apprenticeships_url(:mentor_id => mentor.id), :method => :post
       %td
         %strong= mentor.full_name
         says "
