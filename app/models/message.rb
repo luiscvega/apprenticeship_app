@@ -14,7 +14,7 @@ class Message < ActiveRecord::Base
   belongs_to :user
   
   def notify
-    notification = self.create_notification(apprenticeship: self.apprenticeship)
+    self.create_notification(apprenticeship: self.apprenticeship)
   end
   
   # def notification_count

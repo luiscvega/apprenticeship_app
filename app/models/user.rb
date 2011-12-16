@@ -2,6 +2,8 @@ class User < ActiveRecord::Base
 
   has_secure_password
   
+  has_many :notifications
+  
   has_many :messages
   has_many :meetups  
   has_many :resources

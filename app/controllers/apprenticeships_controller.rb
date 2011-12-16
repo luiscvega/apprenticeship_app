@@ -29,7 +29,7 @@ class ApprenticeshipsController < ApplicationController
   end
   
   def create
-    @apprenticeship = Apprenticeship.new(student: current_user, mentor: User.find(params[:mentor_id]))
+    @apprenticeship = Apprenticeship.new(student: current_user, mentor_id: params[:mentor_id])
 
     if @apprenticeship.save
       redirect_to apprenticeship_url(@apprenticeship), :notice => "Apprenticeship created!"
