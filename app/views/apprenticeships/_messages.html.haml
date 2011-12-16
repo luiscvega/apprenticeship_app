@@ -5,7 +5,7 @@
     .field
       = f.label "Send a message: "
       = f.text_field :text, style: 'width: 300px; height: 25px', placeholder: "Write something here..."
-      = f.submit "Send"
+      = f.submit "Send", class: "button", style: "width: 80px"
 
   %table
     = render @messages

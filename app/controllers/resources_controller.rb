@@ -17,7 +17,8 @@ class ResourcesController < ApplicationController
   
   def create
     @resource = current_apprenticeship.resources.build(params[:resource])
-    @resource.user = current_user
+    @resource.sender = current_user
+    @resource.recipient = other_user  
     
     if @resource.save
       redirect_to apprenticeship_resources_url, :notice => "Hooray! You've added a resource!"

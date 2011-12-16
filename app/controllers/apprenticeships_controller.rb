@@ -12,6 +12,7 @@ class ApprenticeshipsController < ApplicationController
 
     @message = Message.new
     @unread_messages = current_user.unread_messages.where(apprenticeship_id: current_apprenticeship.id)
+    @apprenticeship_id = params[:apprenticeship_id]
 
     respond_to do |format|
       format.js

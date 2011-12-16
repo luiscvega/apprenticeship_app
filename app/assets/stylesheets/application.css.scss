@@ -6,6 +6,10 @@
  *= require_tree . 
 */
 
+#header {
+	float: left;
+}
+
 .clear {
 	clear: both;
 }
@@ -37,7 +41,7 @@ table td.table_column_right {
 	#right {
 		float: right;
 	}
-	#user_nav_left {
+	#left {
 		float: left;
 	}
 }

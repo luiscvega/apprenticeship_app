@@ -1,2 +1,1 @@
-$('#top_section').html('<%= j(render('new_message')) %>');
-$('#top_section').slideToggle();
+$("#apprenticeship_<%= @apprenticeship_id %>").html('<%= j(render('new_message')) %>');

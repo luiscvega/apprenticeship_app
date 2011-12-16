@@ -2,21 +2,80 @@
 
 = render 'mentor_mode'
 
-
-- if current_user.unread_messages.any? 
-
-  %h2 Your New Messages
+- if current_user.has_unread?
+  %h2 What's new?
   %table
-    - current_user.unread_messages.find(:all, group: "apprenticeship_id").each do |message|
-      %tr
-        %td
-          - @new_message = message.apprenticeship
-          = link_to "#{pluralize(current_user.unread_messages.where(user_id: message.sender.id).count, 'message')} from #{message.sender.full_name}", apprenticeship_url(message.apprenticeship), id: dom_id(message.apprenticeship), remote: true
+    - if current_user.unread_messages.any? 
+      - current_user.unread_messages.find(:all, group: "apprenticeship_id").each do |message|
+        %tr
+          %td= link_to "#{pluralize(current_user.unread_messages.where(user_id: message.sender.id).count, 'new message')} from #{message.sender.full_name}", apprenticeship_url(message.apprenticeship, apprenticeship_id: message.apprenticeship.id)
+    - if current_user.unread_meetups.any? 
+      - current_user.unread_meetups.find(:all, group: "apprenticeship_id").each do |meetup|
+        %tr
+          %td= link_to "#{pluralize(current_user.unread_meetups.where(user_id: meetup.sender.id).count, 'new meetup')} from #{meetup.sender.full_name}", apprenticeship_meetups_url(meetup.apprenticeship, apprenticeship_id: meetup.apprenticeship.id)
+    - if current_user.unread_resources.any? 
+      - current_user.unread_resources.find(:all, group: "apprenticeship_id").each do |resource|
+        %tr
+          %td= link_to "#{pluralize(current_user.unread_resources.where(user_id: resource.sender.id).count, 'new resource')} from #{resource.sender.full_name}", apprenticeship_resources_url(resource.apprenticeship, apprenticeship_id: resource.apprenticeship.id)
+  
+%hr
 
-  - if !current_user.apprenticeships.any?
-    %h3{:style => "text-align: center;"}
-      You currently have no apprenticeships. Why not add some? 
-    
-    %p= link_to "Add A New Apprenticeship", new_apprenticeship_url, class: "button", style: "width: 100%;"
+%studentships
+  - if current_user.mentorships.any?
+    %h1 Your Students
+    %table
+      - current_user.mentorships.each do |mentorship|
+        %tr
+          %td
+            = mentorship.student.full_name
+            = link_to "Check Apprenticeship", apprenticeship_url(mentorship)
 
-#top_section
+%mentorships
+  %hr
+  - if current_user.studentships.any?
+    %h1 Your Mentors
+    %table
+      - current_user.studentships.each do |studentship|
+        %tr
+          %td
+            = studentship.mentor.full_name
+            = link_to "Check Apprenticeship", apprenticeship_url(studentship)
+
+/ %h1 Your Apprenticeships
+/ 
+/ - if @apprenticeships.any?
+/   %table
+/     %tr
+/       %th.table_center Student
+/       %th.table_center Mentor
+/       %th
+/       %th
+/       %th
+/ 
+/     - @apprenticeships.each do |apprenticeship|
+/       %tr
+/           
+/         %td.table_center
+/           - if current_user == apprenticeship.student
+/             %strong You
+/           - else
+/             = apprenticeship.student.full_name
+/         %td.table_center
+/           - if current_user == apprenticeship.mentor
+/             %strong You
+/           - else
+/             = apprenticeship.mentor.full_name
+/             
+/         %td.table_center
+/           = link_to "Messages #{"(#{current_user.unread_messages.where(apprenticeship_id: apprenticeship.id).count})" unless current_user.unread_messages.where(apprenticeship_id: apprenticeship.id).count == 0 }", apprenticeship_url(apprenticeship)
+/ 
+/         %td.table_center
+/           = link_to "Meetups #{"(#{current_user.unread_meetups.where(apprenticeship_id: apprenticeship.id).count})" unless current_user.unread_meetups.where(apprenticeship_id: apprenticeship.id).count == 0 }", apprenticeship_meetups_url(apprenticeship)
+/ 
+/         %td.table_center
+/           = link_to "Resources #{"(#{current_user.unread_resources.where(apprenticeship_id: apprenticeship.id).count})" unless current_user.unread_resources.where(apprenticeship_id: apprenticeship.id).count == 0 }", apprenticeship_resources_url(apprenticeship)
+/ - else
+/   %h3{:style => "text-align: center;"}
+/     You currently have no apprenticeships. Why not add some? 
+/   
+/   %p= link_to "Add A New Apprenticeship", new_apprenticeship_url, class: "button", style: "width: 100%;"

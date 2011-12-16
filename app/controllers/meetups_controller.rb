@@ -17,6 +17,7 @@ class MeetupsController < ApplicationController
   def create
     @meetup = current_apprenticeship.meetups.build(params[:meetup])
     @meetup.user = current_user
+    @meetup.recipient = other_user
     
     if @meetup.save
       redirect_to apprenticeship_meetups_url, :notice => "Hooray! You've added a meetup!"

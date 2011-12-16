@@ -42,6 +42,10 @@ class User < ActiveRecord::Base
   def unread_resources
     Resource.joins(:notification).where(recipient_id: self.id)
   end
+  
+  def has_unread?
+    self.unread_messages.any? || self.unread_meetups.any? || self.unread_resources.any?
+  end
 
 end
 
