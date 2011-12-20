@@ -27,8 +27,7 @@
         - current_user.mentorships.each do |mentorship|
           %tr
             %td
-              = mentorship.student.full_name
-              = link_to "Check Apprenticeship", apprenticeship_url(mentorship)
+              = link_to mentorship.student.full_name, apprenticeship_url(mentorship)
 
   - if current_user.studentships.any?
     %mentorships
@@ -38,8 +37,7 @@
         - current_user.studentships.each do |studentship|
           %tr
             %td
-              = studentship.mentor.full_name
-              = link_to "Check Apprenticeship", apprenticeship_url(studentship)
+              = link_to studentship.mentor.full_name, apprenticeship_url(studentship)
               
   = link_to "Overview", apprenticeships_url, remote: true
   #apprenticeships_index
