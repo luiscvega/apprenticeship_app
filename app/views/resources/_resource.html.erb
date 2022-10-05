@@ -1,7 +1,0 @@
-<tr>
-  <td class="table_column_left"><%= link_to resource.title, resource.link, :target => :_blank %></td>
-  <td>added by <%= resource.user.full_name %></td>
-  <td><%= resource.description %></td>
-  <td><%= link_to "Edit", edit_apprenticeship_resource_url(params[:apprenticeship_id], resource) %></td>
-  <td><%= link_to "Delete", apprenticeship_resource_url(params[:apprenticeship_id], resource), :method => :delete %></td>
-</tr>
